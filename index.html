@@ -1,408 +1,311 @@
 <!DOCTYPE html>
-<html lang="zh" data-theme="dark">
-
+<html>
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>中英文 Tab 切换示例</title>
-    <script>
-        tailwind = {}
-        tailwind.config = {
-            theme: {
-                extend: {},
-            },
-            plugins: [window.daisyui],
-            daisyui: {
-                themes: ["dark", "light"],
-            },
-        }
-    </script>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.7.2/dist/full.css" rel="stylesheet" type="text/css" />
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <meta charset="utf-8">
+  <!-- Meta tags for social media banners, these should be filled in appropriatly as they are your "business card" -->
+  <!-- Replace the content tag with appropriate information -->
+  <meta name="description" content="DESCRIPTION META TAG">
+  <meta property="og:title" content="SOCIAL MEDIA TITLE TAG"/>
+  <meta property="og:description" content="SOCIAL MEDIA DESCRIPTION TAG TAG"/>
+  <meta property="og:url" content="URL OF THE WEBSITE"/>
+  <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X630-->
+  <meta property="og:image" content="static/image/cover.svg" />
+  <meta property="og:image:width" content="1200"/>
+  <meta property="og:image:height" content="630"/>
+
+
+  <meta name="twitter:title" content="TWITTER BANNER TITLE META TAG">
+  <meta name="twitter:description" content="TWITTER BANNER DESCRIPTION META TAG">
+  <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X600-->
+  <meta name="twitter:image" content="static/images/your_twitter_banner_image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <!-- Keywords for your paper to be indexed by-->
+  <meta name="keywords" content="KEYWORDS SHOULD BE PLACED HERE">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+  <title>μ²Tokenizer</title>
+  <link rel="icon" type="image/x-icon" href="static/images/favicon.ico">
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+  rel="stylesheet">
+
+  <link rel="stylesheet" href="static/css/bulma.min.css">
+  <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+  href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="static/css/index.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
+  <script defer src="static/js/fontawesome.all.min.js"></script>
+  <script src="static/js/bulma-carousel.min.js"></script>
+  <script src="static/js/bulma-slider.min.js"></script>
+  <script src="static/js/index.js"></script>
 </head>
+<body>
 
-<body class="min-h-screen flex flex-col items-center">
-    <button id="theme-toggle" onclick="toggleTheme()" class="absolute right-0 top-0 mt-2 mr-2 btn btn-sm">️️️️️️☀</button>
-    <div class="text-center max-w-3xl px-4">
-        <h1 class="text-3xl font-bold my-8"><var>&micro<sup>2</sup></var>Tokenizer: Differentiable Multi-Scale
-            Multi-Modal Tokenizer for Radiology Report Generation</h1>
-        <div class="flex flex-wrap justify-center gap-2 text-lg mb-2">
-            <span>Siyou Li<sup>1</sup>, </span>
-            <span>Pengyao Qin<sup>2</sup>, </span>
-            <span>Huanan Wu<sup>3</sup>, </span>
-            <span>Dong Nie<sup>4</sup>, </span>
-            <span>Arun J. Thirunavukarasu<sup>5</sup>, </span>
-            <span>Juntao Yu<sup>1</sup>, </span>
-            <span>Le Zhang<sup>2, 6</sup></span>
-        </div>
-        <div class="text-base text-base-content/80">
-            <p><sup>1</sup>School of Electronic Engineering and Computer Science,</p>
-            <p>Queen Mary University of London, London, UK</p>
-            <p><sup>2</sup>School of Engineering, College of Engineering and Physical Sciences,</p>
-            <p>University of Birmingham, Birmingham, UK</p>
-            <p><sup>3</sup>Guangdong University of Technology, Guangdong, China</p>
-            <p><sup>4</sup>Meta Inc. US</p>
-            <p><sup>5</sup>Nuffield Department of Clinical Neurosciences,</p>
-            <p>University of Oxford, Oxford, UK</p>
-            <p><sup>6</sup>William Harvey Research Institute, NIHR Barts Biomedical Research Centre,</p>
-            <p>Queen Mary University London, London, UK</p>
-        </div>
-    </div>
-    
-    <p>Our proposed model, <strong>μ²LLM</strong>, leverages a multi-scale, multi-modal architecture to generate accurate and clinically salient radiology reports from CT scans.</p>
-<hr>
-<h2 id="-overview">📝 Overview</h2>
-<p>Automated radiology report generation (RRG) is a promising application of AI that aims to assist radiologists by producing detailed textual reports from medical images like CT scans. However, this task faces two major hurdles:</p>
-<ol>
-<li><strong>Complex Information Extraction</strong>: Efficiently extracting all relevant diagnostic information from large, variable-resolution imaging data is computationally intensive and prone to information loss.</li>
-<li><strong>Subjective Evaluation</strong>: Traditional text-generation metrics often fail to capture the clinical accuracy and semantic meaning that are crucial for medical reports.</li>
-</ol>
-<p>To address these challenges, we introduce <strong>μ²LLM</strong>, a multi-scale multimodal large language model. At its core is the novel <strong>μ² Tokenizer</strong>, an intermediate layer that intelligently fuses visual features from CT scans with textual information. The model is further refined using Direct Preference Optimization (DPO), guided by the specialized medical report evaluation metric, GREEN, to ensure the generated reports align with expert standards.</p>
-<p>Our experimental results on four large-scale CT datasets show that μ²LLM outperforms existing methods, highlighting its potential for generating high-quality radiology reports even with limited training data.</p>
-<hr>
-<h2 id="-key-contributions">✨ Key Contributions</h2>
-<ul>
-<li><strong>μ²LLM Framework</strong>: We propose a novel multi-modal large language model (MLLM) designed to efficiently preserve critical details from medical imaging by integrating guided questions.</li>
-<li><strong>μ² Tokenizer Layer</strong>: The core of our framework is the μ² Tokenizer, an intermediate layer that uses multi-level attention and multi-scale aggregation to refine and fuse visual and text embeddings, maximizing semantic correspondence while maintaining computational efficiency.</li>
-<li><strong>Enhanced Training with DPO</strong>: We employ Direct Preference Optimization (DPO) to align our model&#39;s outputs with expert-validated clinical accuracy. The preference data is curated using the GREEN score, a robust LLM-based metric for evaluating the clinical accuracy of radiology reports.</li>
-<li><strong>State-of-the-Art Performance</strong>: Despite its smaller parameter size (1B), our model consistently outperforms larger baseline models (7B to 14B) across multiple datasets, demonstrating the effectiveness of our approach.</li>
-</ul>
-<hr>
-<h2 id="-model-architecture">🏗️ Model Architecture</h2>
-<p>The μ²LLM framework integrates a 3D Vision Transformer (ViT3D) as the image encoder and a large language model (LLM) for report generation. The key innovation, the <strong>μ² Tokenizer</strong>, acts as a bridge between them.</p>
-<p><strong>Overall Pipeline (<code>μ²LLM</code>)</strong>
-<em>Fig. 1: Overview of our proposed µ²LLM model that is centered with the μ² Tokenizer layer for high quality RRG task.</em> </p>
-<ol>
-<li><strong>Input</strong>: A 3D CT scan and a related textual question (e.g., &quot;Can you provide a diagnosis based on the findings in the abdomen?&quot;).</li>
-<li><strong>Image Encoder (ViT3D)</strong>: The CT scan is split into multiple frames to avoid information loss from downsampling. The ViT3D processes these frames to extract a sequence of visual tokens.</li>
-<li><strong>μ² Tokenizer</strong>: This layer takes the visual tokens from the encoder and the tokenized question. It uses multi-scale attention mechanisms to fuse the two modalities, producing a compact and information-rich set of embeddings.</li>
-<li><strong>LLM</strong>: The final image embeddings are passed to the LLM along with the original question to generate the detailed radiology report.</li>
-</ol>
-<h3 id="the-tokenizer-module">The μ² Tokenizer Module</h3>
-<p>The μ² Tokenizer is built upon the Linear Video Tokenizer (LinVT)  and introduces three key improvements:</p>
-<p><em>Fig. 2: The illustration of our proposed μ² Tokenizer.</em> </p>
-<ul>
-<li><strong>Relative Positional Encoding (RPE)</strong>: Instead of absolute positions, we use relative positional encodings within the attention mechanism. This allows the model to better capture local relationships between different areas of the 3D scan, which is crucial for identifying anatomical patterns.</li>
-<li><strong>Differentiable Token Selection (DTS)</strong>: Traditional &quot;hard&quot; top-k token selection can lead to information loss and slow optimization. We replace it with a fully differentiable &quot;soft&quot; selection, which computes a weighted sum of all tokens. This preserves more information and allows gradients to flow back to all visual tokens, improving training stability.</li>
-<li><strong>Dynamic Multi-scale Pooling (DMTP)</strong>: Rather than using fixed pooling kernel sizes, our dynamic approach allows the network to learn how to weight and select the most appropriate pooling strategy based on the input, making the feature extraction process more adaptive and effective.</li>
-</ul>
-<hr>
-<h2 id="-results">📊 Results</h2>
-<p>Our model was evaluated on several benchmark datasets against various high-performing LLMs. We used both traditional metrics (ROUGE, METEOR, BERTScore) and the advanced LLM-based <strong>GREEN</strong> score, which measures clinical accuracy.</p>
-<h3 id="performance-comparison">Performance Comparison</h3>
-<p>μ²LLM achieves state-of-the-art results across all datasets, significantly outperforming larger models like LaMed-Llama-2-7B and RadFM-14B. The use of DPO fine-tuned with GREEN scores further boosted performance, with a notable <strong>20% improvement</strong> in the GREEN score on average.</p>
-<p><strong>Table 1: Performance Comparison Across Different Datasets</strong> </p>
-<table>
-<thead>
-<tr>
-<th style="text-align:left">Datasets</th>
-<th style="text-align:left">Models</th>
-<th style="text-align:center">ROUGE-1</th>
-<th style="text-align:center">GREEN</th>
-<th style="text-align:center">METEOR</th>
-<th style="text-align:center">BERTScore</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left"></td>
-<td style="text-align:left">LaMed-Phi-3-4B</td>
-<td style="text-align:center">0.136</td>
-<td style="text-align:center">0.011</td>
-<td style="text-align:center">0.058</td>
-<td style="text-align:center">0.807</td>
-</tr>
-<tr>
-<td style="text-align:left"></td>
-<td style="text-align:left">LaMed-Llama-2-7B</td>
-<td style="text-align:center">0.139</td>
-<td style="text-align:center">0.009</td>
-<td style="text-align:center">0.060</td>
-<td style="text-align:center">0.810</td>
-</tr>
-<tr>
-<td style="text-align:left"><strong>Abdomen Atlas</strong></td>
-<td style="text-align:left">RadFM-14B</td>
-<td style="text-align:center">0.037</td>
-<td style="text-align:center">0.000</td>
-<td style="text-align:center">0.013</td>
-<td style="text-align:center">0.794</td>
-</tr>
-<tr>
-<td style="text-align:left"></td>
-<td style="text-align:left">RadGPT-N</td>
-<td style="text-align:center">0.247</td>
-<td style="text-align:center"></td>
-<td style="text-align:center">0.112</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:left"></td>
-<td style="text-align:left"><strong>μ²LLM-1B (SFT)</strong></td>
-<td style="text-align:center"><strong>0.529</strong></td>
-<td style="text-align:center"><strong>0.281</strong></td>
-<td style="text-align:center"><strong>0.295</strong></td>
-<td style="text-align:center"><strong>0.891</strong></td>
-</tr>
-<tr>
-<td style="text-align:left"></td>
-<td style="text-align:left"><strong>μ²LLM-1B (SFT\&amp;DPO)</strong></td>
-<td style="text-align:center"><strong>0.567</strong></td>
-<td style="text-align:center"><strong>0.346</strong></td>
-<td style="text-align:center"><strong>0.319</strong></td>
-<td style="text-align:center"><strong>0.895</strong></td>
-</tr>
-<tr>
-<td style="text-align:left"></td>
-<td style="text-align:left">LaMed-Phi-3-4B</td>
-<td style="text-align:center">0.130</td>
-<td style="text-align:center">0.002</td>
-<td style="text-align:center">0.050</td>
-<td style="text-align:center">0.814</td>
-</tr>
-<tr>
-<td style="text-align:left"></td>
-<td style="text-align:left">LaMed-Llama-2-7B</td>
-<td style="text-align:center">0.103</td>
-<td style="text-align:center">0.001</td>
-<td style="text-align:center">0.048</td>
-<td style="text-align:center">0.815</td>
-</tr>
-<tr>
-<td style="text-align:left"><strong>CT-Rate</strong></td>
-<td style="text-align:left">RadFM-14B</td>
-<td style="text-align:center">0.054</td>
-<td style="text-align:center">0.014</td>
-<td style="text-align:center">0.017</td>
-<td style="text-align:center">0.812</td>
-</tr>
-<tr>
-<td style="text-align:left"></td>
-<td style="text-align:left">CT-CHAT-8B</td>
-<td style="text-align:center">0.294</td>
-<td style="text-align:center">0.113</td>
-<td style="text-align:center">0.221</td>
-<td style="text-align:center">0.815</td>
-</tr>
-<tr>
-<td style="text-align:left"></td>
-<td style="text-align:left"><strong>μ²LLM-1B (SFT)</strong></td>
-<td style="text-align:center"><strong>0.517</strong></td>
-<td style="text-align:center"><strong>0.384</strong></td>
-<td style="text-align:center"><strong>0.330</strong></td>
-<td style="text-align:center"><strong>0.879</strong></td>
-</tr>
-<tr>
-<td style="text-align:left"></td>
-<td style="text-align:left"><strong>μ²LLM-1B (SFT\&amp;DPO)</strong></td>
-<td style="text-align:center"><strong>0.539</strong></td>
-<td style="text-align:center"><strong>0.429</strong></td>
-<td style="text-align:center"><strong>0.359</strong></td>
-<td style="text-align:center"><strong>0.890</strong></td>
-</tr>
-<tr>
-<td style="text-align:left"></td>
-<td style="text-align:left">LaMed-Phi-3-4B</td>
-<td style="text-align:center">0.126</td>
-<td style="text-align:center">0.009</td>
-<td style="text-align:center">0.047</td>
-<td style="text-align:center">0.821</td>
-</tr>
-<tr>
-<td style="text-align:left"></td>
-<td style="text-align:left">LaMed-Llama-2-7B</td>
-<td style="text-align:center">0.163</td>
-<td style="text-align:center">0.009</td>
-<td style="text-align:center">0.065</td>
-<td style="text-align:center">0.823</td>
-</tr>
-<tr>
-<td style="text-align:left"><strong>AMOS-MM</strong></td>
-<td style="text-align:left">RadFM-14B</td>
-<td style="text-align:center">0.046</td>
-<td style="text-align:center">0.001</td>
-<td style="text-align:center">0.015</td>
-<td style="text-align:center">0.812</td>
-</tr>
-<tr>
-<td style="text-align:left"></td>
-<td style="text-align:left"><strong>μ²LLM-1B (SFT)</strong></td>
-<td style="text-align:center"><strong>0.421</strong></td>
-<td style="text-align:center"><strong>0.339</strong></td>
-<td style="text-align:center"><strong>0.249</strong></td>
-<td style="text-align:center"><strong>0.881</strong></td>
-</tr>
-<tr>
-<td style="text-align:left"></td>
-<td style="text-align:left"><strong>μ²LLM-1B (SFT\&amp;DPO)</strong></td>
-<td style="text-align:center"><strong>0.459</strong></td>
-<td style="text-align:center"><strong>0.400</strong></td>
-<td style="text-align:center"><strong>0.876</strong></td>
-<td style="text-align:center"><strong>0.881</strong></td>
-</tr>
-</tbody>
-</table>
-<h3 id="ablation-study">Ablation Study</h3>
-<p>Ablation experiments confirmed that each component of the μ² Tokenizer contributes positively to the model&#39;s performance. Differentiable Token Selection (DTS) provided the most significant boost, improving the GREEN score by up to 0.2 points.</p>
-<p><strong>Table 2: Ablation Study on μ² Tokenizer Components</strong> </p>
-<table>
-<thead>
-<tr>
-<th style="text-align:left">Model</th>
-<th style="text-align:center">BLEU</th>
-<th style="text-align:center">ROUGE-1</th>
-<th style="text-align:center">GREEN</th>
-<th style="text-align:center">METEOR</th>
-<th style="text-align:center">BERTScore</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">Baseline</td>
-<td style="text-align:center">0.190</td>
-<td style="text-align:center">0.405</td>
-<td style="text-align:center">0.204</td>
-<td style="text-align:center">0.210</td>
-<td style="text-align:center">0.864</td>
-</tr>
-<tr>
-<td style="text-align:left">+RPE</td>
-<td style="text-align:center">0.281</td>
-<td style="text-align:center">0.421</td>
-<td style="text-align:center">0.277</td>
-<td style="text-align:center">0.236</td>
-<td style="text-align:center">0.880</td>
-</tr>
-<tr>
-<td style="text-align:left">+DTS</td>
-<td style="text-align:center">0.271</td>
-<td style="text-align:center">0.411</td>
-<td style="text-align:center">0.299</td>
-<td style="text-align:center">0.240</td>
-<td style="text-align:center">0.888</td>
-</tr>
-<tr>
-<td style="text-align:left">+DMTP</td>
-<td style="text-align:center">0.254</td>
-<td style="text-align:center">0.401</td>
-<td style="text-align:center">0.233</td>
-<td style="text-align:center">0.220</td>
-<td style="text-align:center">0.874</td>
-</tr>
-<tr>
-<td style="text-align:left"><strong>μ²LLM-1B (SFT)</strong></td>
-<td style="text-align:center">0.279</td>
-<td style="text-align:center">0.421</td>
-<td style="text-align:center">0.339</td>
-<td style="text-align:center">0.249</td>
-<td style="text-align:center">0.881</td>
-</tr>
-<tr>
-<td style="text-align:left"><strong>μ²LLM-1B (SFT\&amp;DPO)</strong></td>
-<td style="text-align:center"><strong>0.336</strong></td>
-<td style="text-align:center"><strong>0.459</strong></td>
-<td style="text-align:center"><strong>0.400</strong></td>
-<td style="text-align:center"><strong>0.876</strong></td>
-<td style="text-align:center"><strong>0.881</strong></td>
-</tr>
-</tbody>
-</table>
-<hr>
-<h2 id="-example-output">🖼️ Example Output</h2>
-<p>Below is an example of a report generated by our model. The heat map on the left visualizes the model&#39;s cross-attention scores, indicating which regions of the CT scan it focused on to answer the question.</p>
-<p><em>Fig. 4: An example of the generated report from our µ²LLM-1B (SFT\&amp;DPO).</em> </p>
-<p>The generated text demonstrates high clinical coherence, providing a structured and accurate interpretation of the CT findings, including descriptions of liver parenchyma density, gallbladder morphology, and other critical observations.</p>
-<hr>
-<h2 id="-datasets">💿 Datasets</h2>
-<p>The models were trained and evaluated on the following large-scale CT image-report datasets:</p>
-<ul>
-<li><strong>AMOS-MM 2024</strong> </li>
-<li><strong>CT-Rate</strong> </li>
-<li><strong>Abdomen Atlas 3.0</strong> </li>
-</ul>
-<p>Additionally, we expanded the dataset by using GPT-4o mini to rewrite reports and generate clinically relevant question-answer pairs, enriching the data&#39;s diversity[.</p>
-<hr>
-<h2 id="-implementation-details">🛠️ Implementation Details</h2>
-<ul>
-<li><strong>Vision Encoder</strong>: 3D ViT from M3D-CLIP.</li>
-<li><strong>Base LLM</strong>: Llama-3.2-1B-Instruct.</li>
-<li><strong>Training</strong>: AdamW optimizer with warm-up and cosine decay, using bf16 mixed-precision training enabled by DeepSpeed on 4x NVIDIA A40 GPUs.</li>
-<li><strong>μ² Tokenizer Config</strong>: 4 Spatio-Temporal Attention Layers, 4 Text Condition Token Attention layers, 8 attention heads, and k=1024 for soft token selection.</li>
-</ul>
-<hr>
-<h2 id="-citation">✒️ Citation</h2>
-<p>If you find this work useful, please consider citing our paper:</p>
-<pre><code class="lang-bibtex">@inproceedings{li2024mutokenizer,
-  title={$\mu^{<span class="hljs-number">2</span>}$ Tokenizer: <span class="hljs-keyword">Differentiable </span><span class="hljs-keyword">Multi-Scale </span><span class="hljs-keyword">Multi-Modal </span>Tokenizer for Radiology Report Generation},
-  author={Li, Siyou <span class="hljs-keyword">and </span>Qin, Pengyao <span class="hljs-keyword">and </span>Wu, Huanan <span class="hljs-keyword">and </span>Nie, Dong <span class="hljs-keyword">and </span>Thirunavukarasu, Arun <span class="hljs-keyword">J. </span><span class="hljs-keyword">and </span>Yu, <span class="hljs-keyword">Juntao </span><span class="hljs-keyword">and </span>Zhang, Le},
-  year={<span class="hljs-number">2024</span>},
-  publisher={Springer}
-}
-</code></pre>
-<hr>
 
-    <div class="w-full max-w-6xl mx-auto p-4 mb-8">
-        <div class="p-4 bg-base-200 rounded-lg">
-            <div class="relative">
-                <textarea id="citation-text" readonly class="textarea textarea-bordered w-full bg-base-100 pr-12"
-                    rows="3">@article{li2024mutokenizer,
-  title={μ²Tokenizer: Differentiable Multi-Scale Multi-Modal Tokenizer for Radiology Report Generation},
-  author={Li, Siyou and Qin, Pengyao and Wu, Huanan and Nie, Dong and Thirunavukarasu, Arun J. and Yu, Juntao and Zhang, Le},
-  year={2024}
-}</textarea>
-                <button id="copy-button" class="btn btn-sm btn-ghost absolute top-2 right-2"
-                    data-clipboard-target="#citation-text">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
-                        stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
-                    </svg>
-                </button>
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <h1 class="title is-1 publication-title">μ²Tokenizer: Differentiable Multi-Scale Multi-Modal Tokenizer for Radiology Report Generation</h1>
+            <div class="is-size-5 publication-authors">
+              <!-- Paper authors -->
+              <span class="author-block">
+                <a href="FIRST AUTHOR PERSONAL LINK" target="_blank">Siyou Li</a><sup>*</sup>,</span>
+                <span class="author-block">
+                <a href="SECOND AUTHOR PERSONAL LINK" target="_blank">Pengyao Qin</a><sup>*</sup>,</span>
+                <span class="author-block">
+                <a href="THIRD AUTHOR PERSONAL LINK" target="_blank">Huanan Wu</a></span>
             </div>
+
+                  <div class="is-size-5 publication-authors">
+                    <span class="author-block">Institution Name<br>Conferance name and year</span>
+                    <span class="eql-cntrb"><small><br><sup>*</sup>Indicates Equal Contribution</small></span>
+                  </div>
+
+                  <div class="column has-text-centered">
+                    <div class="publication-links">
+                         <!-- Arxiv PDF link -->
+                      <span class="link-block">
+                        <a href="https://arxiv.org/pdf/<ARXIV PAPER ID>.pdf" target="_blank"
+                        class="external-link button is-normal is-rounded is-dark">
+                        <span class="icon">
+                          <i class="fas fa-file-pdf"></i>
+                        </span>
+                        <span>Paper</span>
+                      </a>
+                    </span>
+
+                    <!-- Supplementary PDF link -->
+                    <span class="link-block">
+                      <a href="static/pdfs/supplementary_material.pdf" target="_blank"
+                      class="external-link button is-normal is-rounded is-dark">
+                      <span class="icon">
+                        <i class="fas fa-file-pdf"></i>
+                      </span>
+                      <span>Supplementary</span>
+                    </a>
+                  </span>
+
+                  <!-- Github link -->
+                  <span class="link-block">
+                    <a href="https://github.com/YOUR REPO HERE" target="_blank"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fab fa-github"></i>
+                    </span>
+                    <span>Code</span>
+                  </a>
+                </span>
+
+                <!-- ArXiv abstract Link -->
+                <span class="link-block">
+                  <a href="https://arxiv.org/abs/<ARXIV PAPER ID>" target="_blank"
+                  class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                    <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+            </div>
+          </div>
         </div>
+      </div>
     </div>
+  </div>
+</section>
 
-    <script>
-        function toggleTheme() {
-            const html = document.documentElement;
-            const btn = document.getElementById('theme-toggle');
-            const currentTheme = html.getAttribute('data-theme');
-            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-            html.setAttribute('data-theme', newTheme);
-            btn.textContent = newTheme === 'dark' ? '☀️' : '🌙';
-        }
 
-        // 新的复制功能实现
-        document.getElementById('copy-button').addEventListener('click', async function () {
-            const text = document.getElementById('citation-text').value;
-            try {
-                await navigator.clipboard.writeText(text);
+<!-- Teaser video-->
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <video poster="" id="tree" autoplay controls muted loop height="100%">
+        <!-- Your video here -->
+        <source src="static/videos/banner_video.mp4"
+        type="video/mp4">
+      </video>
+      <h2 class="subtitle has-text-centered">
+        Aliquam vitae elit ullamcorper tellus egestas pellentesque. Ut lacus tellus, maximus vel lectus at, placerat pretium mi. Maecenas dignissim tincidunt vestibulum. Sed consequat hendrerit nisl ut maximus. 
+      </h2>
+    </div>
+  </div>
+</section>
+<!-- End teaser video -->
 
-                // 更新按钮图标为成功状态
-                const btn = this;
-                const originalHTML = btn.innerHTML;
-                btn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-          </svg>`;
+<!-- Paper abstract -->
+<section class="section hero is-light">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ullamcorper tellus sed ante aliquam tempus. Etiam porttitor urna feugiat nibh elementum, et tempor dolor mattis. Donec accumsan enim augue, a vulputate nisi sodales sit amet. Proin bibendum ex eget mauris cursus euismod nec et nibh. Maecenas ac gravida ante, nec cursus dui. Vivamus purus nibh, placerat ac purus eget, sagittis vestibulum metus. Sed vestibulum bibendum lectus gravida commodo. Pellentesque auctor leo vitae sagittis suscipit.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End paper abstract -->
 
-                setTimeout(function () {
-                    btn.innerHTML = originalHTML;
-                }, 2000);
-            } catch (err) {
-                console.error('Failed to copy text: ', err);
-            }
-        });
-    </script>
-    <script type="module" async>
-        import { Niivue } from "https://unpkg.com/@niivue/niivue@0.57.0/dist/index.js"
-        var volumeList = [
-            { url: "static/images/amos_5001.nii.gz" },
-        ];
-        var nv = new Niivue({ isResizeCanvas: true });
-        await nv.attachTo("gl");
-        await nv.loadVolumes(volumeList);
-    </script>
-</body>
 
-</html>
+<!-- Image carousel -->
+<section class="hero is-small">
+  <div class="hero-body">
+    <div class="container">
+      <div id="results-carousel" class="carousel results-carousel">
+       <div class="item">
+        <!-- Your image here -->
+        <img src="static/images/carousel1.jpg" alt="MY ALT TEXT"/>
+        <h2 class="subtitle has-text-centered">
+          First image description.
+        </h2>
+      </div>
+      <div class="item">
+        <!-- Your image here -->
+        <img src="static/images/carousel2.jpg" alt="MY ALT TEXT"/>
+        <h2 class="subtitle has-text-centered">
+          Second image description.
+        </h2>
+      </div>
+      <div class="item">
+        <!-- Your image here -->
+        <img src="static/images/carousel3.jpg" alt="MY ALT TEXT"/>
+        <h2 class="subtitle has-text-centered">
+         Third image description.
+       </h2>
+     </div>
+     <div class="item">
+      <!-- Your image here -->
+      <img src="static/images/carousel4.jpg" alt="MY ALT TEXT"/>
+      <h2 class="subtitle has-text-centered">
+        Fourth image description.
+      </h2>
+    </div>
+  </div>
+</div>
+</div>
+</section>
+<!-- End image carousel -->
+
+
+
+
+<!-- Youtube video -->
+<section class="hero is-small is-light">
+  <div class="hero-body">
+    <div class="container">
+      <!-- Paper video. -->
+      <h2 class="title is-3">Video Presentation</h2>
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          
+          <div class="publication-video">
+            <!-- Youtube embed code here -->
+            <iframe src="https://www.youtube.com/embed/JkaxUblCGz0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End youtube video -->
+
+
+<!-- Video carousel -->
+<section class="hero is-small">
+  <div class="hero-body">
+    <div class="container">
+      <h2 class="title is-3">Another Carousel</h2>
+      <div id="results-carousel" class="carousel results-carousel">
+        <div class="item item-video1">
+          <video poster="" id="video1" autoplay controls muted loop height="100%">
+            <!-- Your video file here -->
+            <source src="static/videos/carousel1.mp4"
+            type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-video2">
+          <video poster="" id="video2" autoplay controls muted loop height="100%">
+            <!-- Your video file here -->
+            <source src="static/videos/carousel2.mp4"
+            type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-video3">
+          <video poster="" id="video3" autoplay controls muted loop height="100%">\
+            <!-- Your video file here -->
+            <source src="static/videos/carousel3.mp4"
+            type="video/mp4">
+          </video>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End video carousel -->
+
+
+
+
+
+
+<!-- Paper poster -->
+<section class="hero is-small is-light">
+  <div class="hero-body">
+    <div class="container">
+      <h2 class="title">Poster</h2>
+
+      <iframe  src="static/pdfs/sample.pdf" width="100%" height="550">
+          </iframe>
+        
+      </div>
+    </div>
+  </section>
+<!--End paper poster -->
+
+
+<!--BibTex citation -->
+  <section class="section" id="BibTeX">
+    <div class="container is-max-desktop content">
+      <h2 class="title">BibTeX</h2>
+      <pre><code>BibTex Code Here</code></pre>
+    </div>
+</section>
+<!--End BibTex citation -->
+
+
+  <footer class="footer">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+
+          <p>
+            This page was built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic Project Page Template</a> which was adopted from the <a href="https://nerfies.github.io" target="_blank">Nerfies</a> project page.
+            You are free to borrow the source code of this website, we just ask that you link back to this page in the footer. <br> This website is licensed under a <a rel="license"  href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Statcounter tracking code -->
+  
+<!-- You can add a tracker to track page visits by creating an account at statcounter.com -->
+
+    <!-- End of Statcounter Code -->
+
+  </body>
+  </html>
