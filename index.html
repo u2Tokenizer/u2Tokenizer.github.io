@@ -53,46 +53,46 @@
     <p>Our proposed model, <strong>μ²LLM</strong>, leverages a multi-scale, multi-modal architecture to generate accurate and clinically salient radiology reports from CT scans.</p>
 <hr>
 <h2 id="-overview">📝 Overview</h2>
-<p>[cite_start]Automated radiology report generation (RRG) is a promising application of AI that aims to assist radiologists by producing detailed textual reports from medical images like CT scans[cite: 2]. However, this task faces two major hurdles:</p>
+<p>Automated radiology report generation (RRG) is a promising application of AI that aims to assist radiologists by producing detailed textual reports from medical images like CT scans. However, this task faces two major hurdles:</p>
 <ol>
-<li>[cite_start]<strong>Complex Information Extraction</strong>: Efficiently extracting all relevant diagnostic information from large, variable-resolution imaging data is computationally intensive and prone to information loss[cite: 3, 19, 23].</li>
-<li>[cite_start]<strong>Subjective Evaluation</strong>: Traditional text-generation metrics often fail to capture the clinical accuracy and semantic meaning that are crucial for medical reports[cite: 3, 22, 24].</li>
+<li><strong>Complex Information Extraction</strong>: Efficiently extracting all relevant diagnostic information from large, variable-resolution imaging data is computationally intensive and prone to information loss.</li>
+<li><strong>Subjective Evaluation</strong>: Traditional text-generation metrics often fail to capture the clinical accuracy and semantic meaning that are crucial for medical reports.</li>
 </ol>
-<p>To address these challenges, we introduce <strong>μ²LLM</strong>, a multi-scale multimodal large language model. [cite_start]At its core is the novel <strong>μ² Tokenizer</strong>, an intermediate layer that intelligently fuses visual features from CT scans with textual information[cite: 4, 5]. [cite_start]The model is further refined using Direct Preference Optimization (DPO), guided by the specialized medical report evaluation metric, GREEN, to ensure the generated reports align with expert standards[cite: 5, 29].</p>
-<p>[cite_start]Our experimental results on four large-scale CT datasets show that μ²LLM outperforms existing methods, highlighting its potential for generating high-quality radiology reports even with limited training data[cite: 6].</p>
+<p>To address these challenges, we introduce <strong>μ²LLM</strong>, a multi-scale multimodal large language model. At its core is the novel <strong>μ² Tokenizer</strong>, an intermediate layer that intelligently fuses visual features from CT scans with textual information. The model is further refined using Direct Preference Optimization (DPO), guided by the specialized medical report evaluation metric, GREEN, to ensure the generated reports align with expert standards.</p>
+<p>Our experimental results on four large-scale CT datasets show that μ²LLM outperforms existing methods, highlighting its potential for generating high-quality radiology reports even with limited training data.</p>
 <hr>
 <h2 id="-key-contributions">✨ Key Contributions</h2>
 <ul>
-<li>[cite_start]<strong>μ²LLM Framework</strong>: We propose a novel multi-modal large language model (MLLM) designed to efficiently preserve critical details from medical imaging by integrating guided questions[cite: 25].</li>
-<li>[cite_start]<strong>μ² Tokenizer Layer</strong>: The core of our framework is the μ² Tokenizer, an intermediate layer that uses multi-level attention and multi-scale aggregation to refine and fuse visual and text embeddings, maximizing semantic correspondence while maintaining computational efficiency[cite: 26, 27].</li>
-<li>[cite_start]<strong>Enhanced Training with DPO</strong>: We employ Direct Preference Optimization (DPO) to align our model&#39;s outputs with expert-validated clinical accuracy[cite: 29]. [cite_start]The preference data is curated using the GREEN score, a robust LLM-based metric for evaluating the clinical accuracy of radiology reports[cite: 72, 75, 76].</li>
-<li>[cite_start]<strong>State-of-the-Art Performance</strong>: Despite its smaller parameter size (1B), our model consistently outperforms larger baseline models (7B to 14B) across multiple datasets, demonstrating the effectiveness of our approach[cite: 109, 110, 111].</li>
+<li><strong>μ²LLM Framework</strong>: We propose a novel multi-modal large language model (MLLM) designed to efficiently preserve critical details from medical imaging by integrating guided questions.</li>
+<li><strong>μ² Tokenizer Layer</strong>: The core of our framework is the μ² Tokenizer, an intermediate layer that uses multi-level attention and multi-scale aggregation to refine and fuse visual and text embeddings, maximizing semantic correspondence while maintaining computational efficiency.</li>
+<li><strong>Enhanced Training with DPO</strong>: We employ Direct Preference Optimization (DPO) to align our model&#39;s outputs with expert-validated clinical accuracy. The preference data is curated using the GREEN score, a robust LLM-based metric for evaluating the clinical accuracy of radiology reports.</li>
+<li><strong>State-of-the-Art Performance</strong>: Despite its smaller parameter size (1B), our model consistently outperforms larger baseline models (7B to 14B) across multiple datasets, demonstrating the effectiveness of our approach.</li>
 </ul>
 <hr>
 <h2 id="-model-architecture">🏗️ Model Architecture</h2>
 <p>The μ²LLM framework integrates a 3D Vision Transformer (ViT3D) as the image encoder and a large language model (LLM) for report generation. The key innovation, the <strong>μ² Tokenizer</strong>, acts as a bridge between them.</p>
 <p><strong>Overall Pipeline (<code>μ²LLM</code>)</strong>
-<em>Fig. [cite_start]1: Overview of our proposed µ²LLM model that is centered with the μ² Tokenizer layer for high quality RRG task.</em> [cite: 30]</p>
+<em>Fig. 1: Overview of our proposed µ²LLM model that is centered with the μ² Tokenizer layer for high quality RRG task.</em> </p>
 <ol>
 <li><strong>Input</strong>: A 3D CT scan and a related textual question (e.g., &quot;Can you provide a diagnosis based on the findings in the abdomen?&quot;).</li>
-<li><strong>Image Encoder (ViT3D)</strong>: The CT scan is split into multiple frames to avoid information loss from downsampling. [cite_start]The ViT3D processes these frames to extract a sequence of visual tokens[cite: 35, 36, 37].</li>
-<li><strong>μ² Tokenizer</strong>: This layer takes the visual tokens from the encoder and the tokenized question. [cite_start]It uses multi-scale attention mechanisms to fuse the two modalities, producing a compact and information-rich set of embeddings[cite: 40, 41].</li>
-<li>[cite_start]<strong>LLM</strong>: The final image embeddings are passed to the LLM along with the original question to generate the detailed radiology report[cite: 42, 43, 46].</li>
+<li><strong>Image Encoder (ViT3D)</strong>: The CT scan is split into multiple frames to avoid information loss from downsampling. The ViT3D processes these frames to extract a sequence of visual tokens.</li>
+<li><strong>μ² Tokenizer</strong>: This layer takes the visual tokens from the encoder and the tokenized question. It uses multi-scale attention mechanisms to fuse the two modalities, producing a compact and information-rich set of embeddings.</li>
+<li><strong>LLM</strong>: The final image embeddings are passed to the LLM along with the original question to generate the detailed radiology report.</li>
 </ol>
 <h3 id="the-tokenizer-module">The μ² Tokenizer Module</h3>
-<p>[cite_start]The μ² Tokenizer is built upon the Linear Video Tokenizer (LinVT) [cite: 48] and introduces three key improvements:</p>
-<p><em>Fig. [cite_start]2: The illustration of our proposed μ² Tokenizer.</em> [cite: 44]</p>
+<p>The μ² Tokenizer is built upon the Linear Video Tokenizer (LinVT)  and introduces three key improvements:</p>
+<p><em>Fig. 2: The illustration of our proposed μ² Tokenizer.</em> </p>
 <ul>
-<li><strong>Relative Positional Encoding (RPE)</strong>: Instead of absolute positions, we use relative positional encodings within the attention mechanism. [cite_start]This allows the model to better capture local relationships between different areas of the 3D scan, which is crucial for identifying anatomical patterns[cite: 52].</li>
-<li>[cite_start]<strong>Differentiable Token Selection (DTS)</strong>: Traditional &quot;hard&quot; top-k token selection can lead to information loss and slow optimization[cite: 53]. We replace it with a fully differentiable &quot;soft&quot; selection, which computes a weighted sum of all tokens. [cite_start]This preserves more information and allows gradients to flow back to all visual tokens, improving training stability[cite: 57, 58, 59].</li>
-<li>[cite_start]<strong>Dynamic Multi-scale Pooling (DMTP)</strong>: Rather than using fixed pooling kernel sizes, our dynamic approach allows the network to learn how to weight and select the most appropriate pooling strategy based on the input, making the feature extraction process more adaptive and effective[cite: 63, 64, 65, 68].</li>
+<li><strong>Relative Positional Encoding (RPE)</strong>: Instead of absolute positions, we use relative positional encodings within the attention mechanism. This allows the model to better capture local relationships between different areas of the 3D scan, which is crucial for identifying anatomical patterns.</li>
+<li><strong>Differentiable Token Selection (DTS)</strong>: Traditional &quot;hard&quot; top-k token selection can lead to information loss and slow optimization. We replace it with a fully differentiable &quot;soft&quot; selection, which computes a weighted sum of all tokens. This preserves more information and allows gradients to flow back to all visual tokens, improving training stability.</li>
+<li><strong>Dynamic Multi-scale Pooling (DMTP)</strong>: Rather than using fixed pooling kernel sizes, our dynamic approach allows the network to learn how to weight and select the most appropriate pooling strategy based on the input, making the feature extraction process more adaptive and effective.</li>
 </ul>
 <hr>
 <h2 id="-results">📊 Results</h2>
-<p>Our model was evaluated on several benchmark datasets against various high-performing LLMs. [cite_start]We used both traditional metrics (ROUGE, METEOR, BERTScore) and the advanced LLM-based <strong>GREEN</strong> score, which measures clinical accuracy[cite: 99, 100, 101].</p>
+<p>Our model was evaluated on several benchmark datasets against various high-performing LLMs. We used both traditional metrics (ROUGE, METEOR, BERTScore) and the advanced LLM-based <strong>GREEN</strong> score, which measures clinical accuracy.</p>
 <h3 id="performance-comparison">Performance Comparison</h3>
-<p>[cite_start]μ²LLM achieves state-of-the-art results across all datasets, significantly outperforming larger models like LaMed-Llama-2-7B and RadFM-14B[cite: 111]. [cite_start]The use of DPO fine-tuned with GREEN scores further boosted performance, with a notable <strong>20% improvement</strong> in the GREEN score on average[cite: 114, 115].</p>
-<p>[cite_start]<strong>Table 1: Performance Comparison Across Different Datasets</strong> [cite: 97]</p>
+<p>μ²LLM achieves state-of-the-art results across all datasets, significantly outperforming larger models like LaMed-Llama-2-7B and RadFM-14B. The use of DPO fine-tuned with GREEN scores further boosted performance, with a notable <strong>20% improvement</strong> in the GREEN score on average.</p>
+<p><strong>Table 1: Performance Comparison Across Different Datasets</strong> </p>
 <table>
 <thead>
 <tr>
@@ -244,8 +244,8 @@
 </tbody>
 </table>
 <h3 id="ablation-study">Ablation Study</h3>
-<p>[cite_start]Ablation experiments confirmed that each component of the μ² Tokenizer contributes positively to the model&#39;s performance[cite: 117]. [cite_start]Differentiable Token Selection (DTS) provided the most significant boost, improving the GREEN score by up to 0.2 points[cite: 118].</p>
-<p>[cite_start]<strong>Table 2: Ablation Study on μ² Tokenizer Components</strong> [cite: 104]</p>
+<p>Ablation experiments confirmed that each component of the μ² Tokenizer contributes positively to the model&#39;s performance. Differentiable Token Selection (DTS) provided the most significant boost, improving the GREEN score by up to 0.2 points.</p>
+<p><strong>Table 2: Ablation Study on μ² Tokenizer Components</strong> </p>
 <table>
 <thead>
 <tr>
@@ -310,25 +310,25 @@
 </table>
 <hr>
 <h2 id="-example-output">🖼️ Example Output</h2>
-<p>Below is an example of a report generated by our model. [cite_start]The heat map on the left visualizes the model&#39;s cross-attention scores, indicating which regions of the CT scan it focused on to answer the question[cite: 120].</p>
-<p><em>Fig. [cite_start]4: An example of the generated report from our µ²LLM-1B (SFT\&amp;DPO).</em> [cite: 108]</p>
-<p>[cite_start]The generated text demonstrates high clinical coherence, providing a structured and accurate interpretation of the CT findings, including descriptions of liver parenchyma density, gallbladder morphology, and other critical observations[cite: 122, 123, 124].</p>
+<p>Below is an example of a report generated by our model. The heat map on the left visualizes the model&#39;s cross-attention scores, indicating which regions of the CT scan it focused on to answer the question.</p>
+<p><em>Fig. 4: An example of the generated report from our µ²LLM-1B (SFT\&amp;DPO).</em> </p>
+<p>The generated text demonstrates high clinical coherence, providing a structured and accurate interpretation of the CT findings, including descriptions of liver parenchyma density, gallbladder morphology, and other critical observations.</p>
 <hr>
 <h2 id="-datasets">💿 Datasets</h2>
 <p>The models were trained and evaluated on the following large-scale CT image-report datasets:</p>
 <ul>
-<li>[cite_start]<strong>AMOS-MM 2024</strong> [cite: 80]</li>
-<li>[cite_start]<strong>CT-Rate</strong> [cite: 82]</li>
-<li>[cite_start]<strong>Abdomen Atlas 3.0</strong> [cite: 84]</li>
+<li><strong>AMOS-MM 2024</strong> </li>
+<li><strong>CT-Rate</strong> </li>
+<li><strong>Abdomen Atlas 3.0</strong> </li>
 </ul>
-<p>[cite_start]Additionally, we expanded the dataset by using GPT-4o mini to rewrite reports and generate clinically relevant question-answer pairs, enriching the data&#39;s diversity[cite: 86, 87].</p>
+<p>Additionally, we expanded the dataset by using GPT-4o mini to rewrite reports and generate clinically relevant question-answer pairs, enriching the data&#39;s diversity[.</p>
 <hr>
 <h2 id="-implementation-details">🛠️ Implementation Details</h2>
 <ul>
-<li>[cite_start]<strong>Vision Encoder</strong>: 3D ViT from M3D-CLIP[cite: 89].</li>
-<li>[cite_start]<strong>Base LLM</strong>: Llama-3.2-1B-Instruct[cite: 89].</li>
-<li>[cite_start]<strong>Training</strong>: AdamW optimizer with warm-up and cosine decay, using bf16 mixed-precision training enabled by DeepSpeed on 4x NVIDIA A40 GPUs[cite: 90, 91].</li>
-<li>[cite_start]<strong>μ² Tokenizer Config</strong>: 4 Spatio-Temporal Attention Layers, 4 Text Condition Token Attention layers, 8 attention heads, and k=1024 for soft token selection[cite: 92].</li>
+<li><strong>Vision Encoder</strong>: 3D ViT from M3D-CLIP.</li>
+<li><strong>Base LLM</strong>: Llama-3.2-1B-Instruct.</li>
+<li><strong>Training</strong>: AdamW optimizer with warm-up and cosine decay, using bf16 mixed-precision training enabled by DeepSpeed on 4x NVIDIA A40 GPUs.</li>
+<li><strong>μ² Tokenizer Config</strong>: 4 Spatio-Temporal Attention Layers, 4 Text Condition Token Attention layers, 8 attention heads, and k=1024 for soft token selection.</li>
 </ul>
 <hr>
 <h2 id="-citation">✒️ Citation</h2>
@@ -341,13 +341,6 @@
 }
 </code></pre>
 <hr>
-<h2 id="-contact">📧 Contact</h2>
-<p>For any questions, please feel free to contact:</p>
-<ul>
-<li>[cite_start]Siyou Li: <code>siyou.li@qmul.ac.uk</code> [cite: 2]</li>
-<li>[cite_start]Juntao Yu: <code>juntao.yu@qmul.ac.uk</code> [cite: 2]</li>
-<li>[cite_start]Le Zhang: <code>l.zhang.16@bham.ac.uk</code> [cite: 2]</li>
-</ul>
 
     <div class="w-full max-w-6xl mx-auto p-4 mb-8">
         <div class="p-4 bg-base-200 rounded-lg">
