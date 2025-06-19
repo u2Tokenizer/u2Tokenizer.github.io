@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="zh" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>中英文 Tab 切换示例</title>
+    <script>
+        tailwind = {}
+        tailwind.config = {
+            theme: {
+                extend: {},
+            },
+            plugins: [window.daisyui],
+            daisyui: {
+                themes: ["dark", "light"],
+            },
+        }
+    </script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.7.2/dist/full.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+
+<body class="min-h-screen flex flex-col items-center">
+    <button id="theme-toggle" onclick="toggleTheme()" class="absolute right-0 top-0 mt-2 mr-2 btn btn-sm">️️️️️️☀</button>
+    <div class="text-center max-w-3xl px-4">
+        <h1 class="text-3xl font-bold my-8"><var>&micro<sup>2</sup></var>Tokenizer: Differentiable Multi-Scale
+            Multi-Modal Tokenizer for Radiology Report Generation</h1>
+        <div class="flex flex-wrap justify-center gap-2 text-lg mb-2">
+            <span>Siyou Li<sup>1</sup>, </span>
+            <span>Pengyao Qin<sup>2</sup>, </span>
+            <span>Huanan Wu<sup>3</sup>, </span>
+            <span>Dong Nie<sup>4</sup>, </span>
+            <span>Arun J. Thirunavukarasu<sup>5</sup>, </span>
+            <span>Juntao Yu<sup>1</sup>, </span>
+            <span>Le Zhang<sup>2, 6</sup></span>
+        </div>
+        <div class="text-base text-base-content/80">
+            <p><sup>1</sup>School of Electronic Engineering and Computer Science,</p>
+            <p>Queen Mary University of London, London, UK</p>
+            <p><sup>2</sup>School of Engineering, College of Engineering and Physical Sciences,</p>
+            <p>University of Birmingham, Birmingham, UK</p>
+            <p><sup>3</sup>Guangdong University of Technology, Guangdong, China</p>
+            <p><sup>4</sup>Meta Inc. US</p>
+            <p><sup>5</sup>Nuffield Department of Clinical Neurosciences,</p>
+            <p>University of Oxford, Oxford, UK</p>
+            <p><sup>6</sup>William Harvey Research Institute, NIHR Barts Biomedical Research Centre,</p>
+            <p>Queen Mary University London, London, UK</p>
+        </div>
+    </div>
+    <div class="w-full h-full max-w-6xl mx-auto flex p-4 rounded-lg bg-base-200">
+        <!-- 左边容器 -->
+        <div class="flex-1">
+            <div class="card bg-base-100 shadow-xl rounded-r-none">
+                <div class="card-body">
+                    <h2 class="card-title">CT Image</h2>
+                    <div class="flex flex-col gap-4">
+                        <canvas id="gl" width="640" height="840" class="rounded-lg"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 右边 tab 容器 -->
+        <div class="flex-1 relative rounded-l-none">
+            <div class="tabs tabs-lifted tabs-s">
+                <input type="radio" name="my_tabs_1" class="tab min-w-3xs" aria-label="Report Generation" checked="checked" />
+                <div id="content-mrg" class="tab-content bg-base-100 border-base-300 p-6">
+                    <div class="chat chat-end">
+                        <div class="chat-bubble">Describe this scan's findings.</div>
+                    </div>
+                    <div class="chat chat-start">
+                        <div class="chat-bubble">
+                            <div tabindex="0" class="collapse bg-base-200">
+                                <input type="checkbox" />
+                                <div class="collapse-title font-semibold">Thinking</div>
+                                <div class="collapse-content text-sm">
+                                    The clinical significance of unclear intestinal structures and thickened intestinal walls in the lower right abdomen following surgery must be interpreted in the context of potential postoperative complications. These findings raise concern for inflammation, infection, or ischemia. Adhesions from prior surgery can lead to anatomical distortion, making bowel loops difficult to delineate. The presence of both air and fluid within the bowel, along with perienteric air, increases suspicion for an anastomotic leak or a contained perforation. Striated and patchy densities in the surrounding region may represent inflammatory stranding or localized fluid collections. While postoperative edema may explain some of these findings, the combination of wall thickening, air, and fluid is more indicative of an infectious or perforative process rather than simple post-surgical healing. No abnormalities are seen in other organs, reinforcing a focus on bowel integrity.
+
+                                    The patchy and striated shadows observed around the intestines further support the presence of localized inflammation or infection. Striated opacities typically reflect edema or inflammatory infiltration of perienteric fat, commonly seen in conditions such as diverticulitis, appendicitis, or postoperative abscesses. Patchy gas collections adjacent to thickened bowel walls may indicate a minor perforation or infection with gas-forming organisms such as *E. coli* or *Clostridium*. The lack of widespread peritoneal involvement or significant lymphadenopathy makes diffuse peritonitis or metastatic disease less likely. The thickened ileocecal wall and fluid-gas levels in the intestine suggest a focal process such as a localized infection, enterocolitis, or postoperative complication like an anastomotic leak or adhesive ileus with secondary inflammation.
+
+                                    Localized air accumulation in the lower right abdominal wall post-surgery is best interpreted in the context of thickened intestinal walls and perienteric air. The ileocecal wall thickening supports a localized inflammatory process. Generalized peritoneal free air is absent, and other organs appear normal, which excludes visceral perforation as a primary cause. This pattern is most consistent with a localized infection or abscess involving gas-forming pathogens, potentially due to surgical contamination or anastomotic leakage. The air appears to be confined, indicating a contained infection rather than systemic sepsis or diffuse peritonitis.
+
+                                    The presence of both air and liquid within the intestines postoperatively raises the possibility of impaired motility (ileus) or mechanical obstruction. However, the radiographic findings of patchy perienteric air and wall thickening suggest that localized inflammation or leakage may be contributing to bowel dysfunction. While ileus alone may present with dilated loops of bowel, the focal nature of these findings supports a localized process such as minor anastomotic dehiscence leading to inflammation and secondary ileus. Obstruction is less likely without a clear transition point or marked dilation.
+
+                                    The smooth liver surface and uniform parenchymal density indicate no structural abnormalities, such as cirrhosis, focal masses, or metastatic lesions. The absence of heterogeneous attenuation changes supports normal hepatic parenchyma without evidence of infection, hemorrhage, or tumor infiltration.
+
+                                    The gallbladder's normal size, shape, and the lack of bile duct dilation suggest no involvement of the biliary system. This excludes biliary obstruction, cholecystitis, or bile leak as sources of the observed findings, which are instead confined to the intestinal structures in the lower right abdomen.
+
+                                    The lack of abnormalities in the spleen, pancreas, and kidneys indicates that the disease process is localized rather than systemic. Conditions such as vasculitis, widespread infection, or metastatic disease typically involve multiple organs, but none of these are present here. This supports a diagnosis limited to the surgical site, such as infection, localized inflammation, or mechanical complications.
+
+                                    The absence of enlarged retroperitoneal lymph nodes further narrows the differential to a localized process. Systemic etiologies such as lymphoma, tuberculosis, or sarcoidosis are less likely. However, localized inflammatory conditions like Crohn’s disease or postoperative infection remain possible. Clinical correlation with symptoms and lab values is essential.
+
+                                    Perienteric air and wall thickening are not typical of simple postoperative changes and are more indicative of a visceral leak. Anastomotic dehiscence is the most plausible explanation for these findings, especially when combined with subcutaneous emphysema. Adhesions or abscess formation are less likely without signs of obstruction or fluid collections with air-fluid levels.
+
+                                    The fistula in the left lower abdominal wall is likely **colocutaneous**, given its anatomical location and the presence of fluid accumulation and a drainage tube. Possible origins include chronic colonic inflammation (such as from Crohn’s disease or diverticulitis) or surgical complications such as colostomy breakdown or wound infection. There is no evidence of bladder involvement, ruling out vesicocutaneous fistula.
+
+                                    The bladder appears normal in contour and density, indicating that the urinary system is not involved in the current pathology. This supports the conclusion that the fluid accumulation and fistula are not related to urinary leakage or obstruction.
+
+                                    The drainage tube and fistula are likely interrelated. The tube may have been placed to manage fluid from the fistula, or the fistula may have developed in response to the tube’s presence, possibly due to irritation or infection. Their coexistence in the same anatomical region indicates a clinical or pathological connection.
+
+                                    The fluid accumulation in the abdominopelvic cavity is likely connected to the fistula. If the fistula communicates with the bowel or another hollow viscus, enteric contents may be leaking into the peritoneal space, leading to inflammation and fluid exudation. The drainage tube may be attempting to manage this leakage, but ongoing communication through the fistula may sustain the fluid collection.
+
+                                    These findings raise concern for potential complications such as infection, inflammation, or ongoing leakage. The presence of a fistula increases the risk of sepsis and skin breakdown. While imaging does not directly show signs of acute infection (e.g., rim-enhancing fluid or purulent collections), the clinical context and presence of drainage and fluid accumulation suggest an underlying complicated process. Bowel obstruction is less likely unless there is involvement of adjacent loops, which is not explicitly noted.
+
+                                    Collectively, these findings suggest a complex postoperative scenario that may involve anastomotic leakage or localized infection. Management should include close monitoring, possible infectious disease consultation, surgical review, and potential interventional radiology involvement to assess and manage the fluid and fistula.
+
+                                </div>
+                            </div>
+                            The stomach is filled, and the gastric mucosa of the gastric body and antrum is thickened to about 12mm, with unevenly and obviously enhancement. The wall of the ileocecus is thickened with no obvious abnormal enhancement. The liver is normal in size and shape, with coordinated proportion of liver lobes. Multiple low-density cystic lesions are seen in the liver, and the larger one is in the upper right lobe of the liver(S8), about 14mm×20mm in size, with clear border and a CT value of about 2Hu. The cystic lesions are of no obvious enhancement. Patchy and inhomogeneous low-density focus with slightly clear edge is seen in the left inner lobe near the liver fissure(S4), about 8mm×16mm in size with a CT value of about 6-26HU. The focus is of slightly progressive enhancement in the portal venous phase and delayed phase, while the CT value in the delayed phase is about 37Hu. A small calcified high-density focus is seen at the edge of the right posterior lobe of the liver(S6). The intrahepatic duct system and common bile duct are not dilated and normal in course. The gallbladder is not enlarged, the wall is not thickened, and no abnormal density shadows are seen inside. The spleen is not enlarged and the parenchymal density is uniform. The pancreas is normal in size and shape, with uniform parenchymal density and no abnormal density shadows inside. The main pancreatic duct is not dilated, and the pancreatic fat space is clear. No enlarged lymph nodes are seen in the retroperitoneum. No obvious abnormal enhancement is seen in the gallbladder, spleen, and pancreas during the enhanced scan. The left kidney is positioned slightly lower, the shape of both kidneys is normal with a clear perirenal fat space. Multiple low-density cystic lesions are seen in both kidneys, and the larger one is in the mid-pole of the right kidney, about 13mm ×17mm in size, with no obvious abnormal enhancement. No dilation is seen in the bilateral renal pelvis, calyces, and ureters.
+                        </div>
+                    </div>
+                </div>
+              
+                <input type="radio" name="my_tabs_1" class="tab min-w-3xs" aria-label="QA(English)" />
+                <div id="content-en" class="tab-content bg-base-100 border-base-300 p-6">
+                    <div class="chat chat-end">
+                        <div class="chat-bubble">What conclusions can be drawn about the spleen’s size and parenchymal density?</div>
+                    </div>
+                    <div class="chat chat-start">
+                        <div class="chat-bubble">
+                            <div tabindex="0" class="collapse bg-base-200">
+                                <input type="checkbox" />
+                                <div class="collapse-title font-semibold">Thinking</div>
+                                <div class="collapse-content text-sm">
+                                    When reviewing the radiology image, the section describing the spleen explicitly states that it is "not enlarged" and has "uniform parenchymal density." These findings indicate no abnormal enlargement (splenomegaly) and no focal lesions or heterogeneity in density, which would otherwise suggest pathology such as cysts, tumors, or inflammatory changes. The absence of abnormal enhancement further supports the conclusion that the spleen appears normal on imaging.
+                                </div>
+                            </div>
+                            The spleen is of normal size (not enlarged) and demonstrates uniform parenchymal density, indicating no focal lesions, cysts, or pathological density changes.
+                        </div>
+                    </div>
+                </div>
+              
+                <input type="radio" name="my_tabs_1" class="tab min-w-3xs" aria-label="QA(Chinese)" />
+                <div id="content-zh" class="tab-content bg-base-100 border-base-300 p-6">
+                    <div class="chat chat-end">
+                        <div class="chat-bubble">关于脾脏的大小和实质密度，可以得出什么结论？</div>
+                    </div>
+                    <div class="chat chat-start">
+                        <div class="chat-bubble">
+                            <div tabindex="0" class="collapse bg-base-200">
+                                <input type="checkbox" />
+                                <div class="collapse-title font-semibold">Thinking</div>
+                                <div class="collapse-content text-sm">
+                                    查看放射影像时，描述脾脏的部分明确指出它“未增大”且具有“均匀的实质密度”。这些发现表明没有异常增大（脾大）和没有局部病变或密度的不均匀性，否则可能表明存在囊肿、肿瘤或炎症变化等病理变化。没有异常增强的现象进一步支持了这样的结论：在影像学检查中，脾脏似乎是正常的。
+                                </div>
+                            </div>
+                            脾脏大小正常（未增大），并表现出均匀的实质密度，表明没有局部病变、囊肿或病理性密度变化。
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <!-- <div tabindex="1" class="collapse bg-base-100 border-base-300 border">
+                <div class="collapse-title font-semibold">How do I create an account1?</div>
+                <div class="collapse-content text-sm">
+                  Click the "Sign Up" button in the top right corner and follow the registration process.
+                </div>
+            </div>
+            <div tabindex="0" class="collapse bg-base-100 border-base-300 border">
+                <div class="collapse-title font-semibold">How do I create an account?</div>
+                <div class="collapse-content text-sm">
+                  Click the "Sign Up" button in the top right corner and follow the registration process.
+                </div>
+            </div> -->
+        </div>
+    </div>
+    <div class="w-full max-w-6xl mx-auto p-4 mb-8">
+        <div class="p-4 bg-base-200 rounded-lg">
+            <div class="relative">
+                <textarea id="citation-text" readonly class="textarea textarea-bordered w-full bg-base-100 pr-12"
+                    rows="3">@article{li2024mutokenizer,
+  title={μ²Tokenizer: Differentiable Multi-Scale Multi-Modal Tokenizer for Radiology Report Generation},
+  author={Li, Siyou and Qin, Pengyao and Wu, Huanan and Nie, Dong and Thirunavukarasu, Arun J. and Yu, Juntao and Zhang, Le},
+  year={2024}
+}</textarea>
+                <button id="copy-button" class="btn btn-sm btn-ghost absolute top-2 right-2"
+                    data-clipboard-target="#citation-text">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleTheme() {
+            const html = document.documentElement;
+            const btn = document.getElementById('theme-toggle');
+            const currentTheme = html.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            html.setAttribute('data-theme', newTheme);
+            btn.textContent = newTheme === 'dark' ? '☀️' : '🌙';
+        }
+
+        // 新的复制功能实现
+        document.getElementById('copy-button').addEventListener('click', async function () {
+            const text = document.getElementById('citation-text').value;
+            try {
+                await navigator.clipboard.writeText(text);
+
+                // 更新按钮图标为成功状态
+                const btn = this;
+                const originalHTML = btn.innerHTML;
+                btn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+          </svg>`;
+
+                setTimeout(function () {
+                    btn.innerHTML = originalHTML;
+                }, 2000);
+            } catch (err) {
+                console.error('Failed to copy text: ', err);
+            }
+        });
+    </script>
+    <script type="module" async>
+        import { Niivue } from "https://unpkg.com/@niivue/niivue@0.57.0/dist/index.js"
+        var volumeList = [
+            { url: "static/images/amos_5001.nii.gz" },
+        ];
+        var nv = new Niivue({ isResizeCanvas: true });
+        await nv.attachTo("gl");
+        await nv.loadVolumes(volumeList);
+    </script>
+</body>
+
+</html>
