@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh" data-theme="dark">
+<html lang="zh" data-theme="light">
 
 <head>
     <meta charset="UTF-8" />
@@ -23,7 +23,7 @@
 </head>
 
 <body class="min-h-screen flex flex-col items-center">
-    <button id="theme-toggle" onclick="toggleTheme()" class="absolute right-0 top-0 mt-2 mr-2 btn btn-sm">️️️️️️☀</button>
+    <!-- <button id="theme-toggle" onclick="toggleTheme()" class="absolute right-0 top-0 mt-2 mr-2 btn btn-sm">️️️️️️☀</button> -->
     <div class="text-center max-w-3xl px-4">
         <h1 class="text-3xl font-bold my-8"><var>&micro<sup>2</sup></var>Tokenizer: Differentiable Multi-Scale
             Multi-Modal Tokenizer for Radiology Report Generation</h1>
@@ -49,10 +49,10 @@
             <p>Queen Mary University London, London, UK</p>
         </div>
     </div>
-    <div class="w-full h-full max-w-6xl mx-auto flex p-4 rounded-lg bg-base-200">
+    <div class="w-900 h-full max-w-6xl mx-auto flex p-4 rounded-lg bg-base-200">
         <!-- 左边容器 -->
         <div class="flex-1">
-            <div class="card bg-base-100 shadow-xl rounded-r-none">
+            <div class="card bg-base-100 shadow-xl rounded-r-none h-[600px]">
                 <div class="card-body">
                     <h2 class="card-title">CT Image</h2>
                     <div class="flex flex-col gap-4">
@@ -64,17 +64,17 @@
         <!-- 右边 tab 容器 -->
         <div class="flex-1 relative rounded-l-none">
             <div class="tabs tabs-lifted tabs-s">
-                <input type="radio" name="my_tabs_1" class="tab min-w-3xs" aria-label="Report Generation" checked="checked" />
+                <input type="radio" name="my_tabs_1" class="tab min-w-3xs" aria-label="Report Generation" />
                 <div id="content-mrg" class="tab-content bg-base-100 border-base-300 p-6">
                     <div class="chat chat-end">
-                        <div class="chat-bubble">Describe this scan's findings.</div>
+                        <div class="chat-bubble bg-base-200 text-black">Describe this scan's findings.</div>
                     </div>
                     <div class="chat chat-start">
-                        <div class="chat-bubble">
+                        <div class="chat-bubble bg-base-200 text-black">
                             <div tabindex="0" class="collapse bg-base-200">
                                 <input type="checkbox" />
-                                <div class="collapse-title font-semibold">Thinking</div>
-                                <div class="collapse-content text-sm">
+                                <div class="collapse-title font-semibold text-gray-400">Thinking</div>
+                                <div class="collapse-content text-sm text-gray-400">
                                     The clinical significance of unclear intestinal structures and thickened intestinal walls in the lower right abdomen following surgery must be interpreted in the context of potential postoperative complications. These findings raise concern for inflammation, infection, or ischemia. Adhesions from prior surgery can lead to anatomical distortion, making bowel loops difficult to delineate. The presence of both air and fluid within the bowel, along with perienteric air, increases suspicion for an anastomotic leak or a contained perforation. Striated and patchy densities in the surrounding region may represent inflammatory stranding or localized fluid collections. While postoperative edema may explain some of these findings, the combination of wall thickening, air, and fluid is more indicative of an infectious or perforative process rather than simple post-surgical healing. No abnormalities are seen in other organs, reinforcing a focus on bowel integrity.
 
                                     The patchy and striated shadows observed around the intestines further support the presence of localized inflammation or infection. Striated opacities typically reflect edema or inflammatory infiltration of perienteric fat, commonly seen in conditions such as diverticulitis, appendicitis, or postoperative abscesses. Patchy gas collections adjacent to thickened bowel walls may indicate a minor perforation or infection with gas-forming organisms such as *E. coli* or *Clostridium*. The lack of widespread peritoneal involvement or significant lymphadenopathy makes diffuse peritonitis or metastatic disease less likely. The thickened ileocecal wall and fluid-gas levels in the intestine suggest a focal process such as a localized infection, enterocolitis, or postoperative complication like an anastomotic leak or adhesive ileus with secondary inflammation.
@@ -89,15 +89,15 @@
 
                                     The lack of abnormalities in the spleen, pancreas, and kidneys indicates that the disease process is localized rather than systemic. Conditions such as vasculitis, widespread infection, or metastatic disease typically involve multiple organs, but none of these are present here. This supports a diagnosis limited to the surgical site, such as infection, localized inflammation, or mechanical complications.
 
-                                    The absence of enlarged retroperitoneal lymph nodes further narrows the differential to a localized process. Systemic etiologies such as lymphoma, tuberculosis, or sarcoidosis are less likely. However, localized inflammatory conditions like Crohn’s disease or postoperative infection remain possible. Clinical correlation with symptoms and lab values is essential.
+                                    The absence of enlarged retroperitoneal lymph nodes further narrows the differential to a localized process. Systemic etiologies such as lymphoma, tuberculosis, or sarcoidosis are less likely. However, localized inflammatory conditions like Crohn's disease or postoperative infection remain possible. Clinical correlation with symptoms and lab values is essential.
 
                                     Perienteric air and wall thickening are not typical of simple postoperative changes and are more indicative of a visceral leak. Anastomotic dehiscence is the most plausible explanation for these findings, especially when combined with subcutaneous emphysema. Adhesions or abscess formation are less likely without signs of obstruction or fluid collections with air-fluid levels.
 
-                                    The fistula in the left lower abdominal wall is likely **colocutaneous**, given its anatomical location and the presence of fluid accumulation and a drainage tube. Possible origins include chronic colonic inflammation (such as from Crohn’s disease or diverticulitis) or surgical complications such as colostomy breakdown or wound infection. There is no evidence of bladder involvement, ruling out vesicocutaneous fistula.
+                                    The fistula in the left lower abdominal wall is likely **colocutaneous**, given its anatomical location and the presence of fluid accumulation and a drainage tube. Possible origins include chronic colonic inflammation (such as from Crohn's disease or diverticulitis) or surgical complications such as colostomy breakdown or wound infection. There is no evidence of bladder involvement, ruling out vesicocutaneous fistula.
 
                                     The bladder appears normal in contour and density, indicating that the urinary system is not involved in the current pathology. This supports the conclusion that the fluid accumulation and fistula are not related to urinary leakage or obstruction.
 
-                                    The drainage tube and fistula are likely interrelated. The tube may have been placed to manage fluid from the fistula, or the fistula may have developed in response to the tube’s presence, possibly due to irritation or infection. Their coexistence in the same anatomical region indicates a clinical or pathological connection.
+                                    The drainage tube and fistula are likely interrelated. The tube may have been placed to manage fluid from the fistula, or the fistula may have developed in response to the tube's presence, possibly due to irritation or infection. Their coexistence in the same anatomical region indicates a clinical or pathological connection.
 
                                     The fluid accumulation in the abdominopelvic cavity is likely connected to the fistula. If the fistula communicates with the bowel or another hollow viscus, enteric contents may be leaking into the peritoneal space, leading to inflammation and fluid exudation. The drainage tube may be attempting to manage this leakage, but ongoing communication through the fistula may sustain the fluid collection.
 
@@ -112,18 +112,18 @@
                     </div>
                 </div>
               
-                <input type="radio" name="my_tabs_1" class="tab min-w-3xs" aria-label="QA(English)" />
+                <input type="radio" name="my_tabs_1" class="tab min-w-3xs" aria-label="QA(English)" checked="checked" />
                 <div id="content-en" class="tab-content bg-base-100 border-base-300 p-6">
                     <div class="chat chat-end">
-                        <div class="chat-bubble">What conclusions can be drawn about the spleen’s size and parenchymal density?</div>
+                        <div class="chat-bubble bg-base-200 text-black">What conclusions can be drawn about the spleen's size and parenchymal density?</div>
                     </div>
                     <div class="chat chat-start">
-                        <div class="chat-bubble">
+                        <div class="chat-bubble bg-base-200 text-black">
                             <div tabindex="0" class="collapse bg-base-200">
                                 <input type="checkbox" />
-                                <div class="collapse-title font-semibold">Thinking</div>
-                                <div class="collapse-content text-sm">
-                                    When reviewing the radiology image, the section describing the spleen explicitly states that it is "not enlarged" and has "uniform parenchymal density." These findings indicate no abnormal enlargement (splenomegaly) and no focal lesions or heterogeneity in density, which would otherwise suggest pathology such as cysts, tumors, or inflammatory changes. The absence of abnormal enhancement further supports the conclusion that the spleen appears normal on imaging.
+                                <div class="collapse-title font-semibold text-gray-400">Thinking</div>
+                                <div class="collapse-content text-sm text-gray-400">
+                                    When reviewing the radiology image, the section describing the spleen explicitly states that it "not enlarged" and has "uniform parenchymal density." These findings indicate no abnormal enlargement (splenomegaly) and no focal lesions or heterogeneity in density, which would otherwise suggest pathology such as cysts, tumors, or inflammatory changes. The absence of abnormal enhancement further supports the conclusion that the spleen appears normal on imaging.
                                 </div>
                             </div>
                             The spleen is of normal size (not enlarged) and demonstrates uniform parenchymal density, indicating no focal lesions, cysts, or pathological density changes.
@@ -134,15 +134,15 @@
                 <input type="radio" name="my_tabs_1" class="tab min-w-3xs" aria-label="QA(Chinese)" />
                 <div id="content-zh" class="tab-content bg-base-100 border-base-300 p-6">
                     <div class="chat chat-end">
-                        <div class="chat-bubble">关于脾脏的大小和实质密度，可以得出什么结论？</div>
+                        <div class="chat-bubble bg-base-200 text-black">关于脾脏的大小和实质密度，可以得出什么结论？</div>
                     </div>
                     <div class="chat chat-start">
-                        <div class="chat-bubble">
+                        <div class="chat-bubble bg-base-200 text-black">
                             <div tabindex="0" class="collapse bg-base-200">
                                 <input type="checkbox" />
-                                <div class="collapse-title font-semibold">Thinking</div>
-                                <div class="collapse-content text-sm">
-                                    查看放射影像时，描述脾脏的部分明确指出它“未增大”且具有“均匀的实质密度”。这些发现表明没有异常增大（脾大）和没有局部病变或密度的不均匀性，否则可能表明存在囊肿、肿瘤或炎症变化等病理变化。没有异常增强的现象进一步支持了这样的结论：在影像学检查中，脾脏似乎是正常的。
+                                <div class="collapse-title font-semibold text-gray-400">Thinking</div>
+                                <div class="collapse-content text-sm text-gray-400">
+                                    查看放射影像时，描述脾脏的部分明确指出它"未增大"且具有"均匀的实质密度"。这些发现表明没有异常增大（脾大）和没有局部病变或密度的不均匀性，否则可能表明存在囊肿、肿瘤或炎症变化等病理变化。没有异常增强的现象进一步支持了这样的结论：在影像学检查中，脾脏似乎是正常的。
                                 </div>
                             </div>
                             脾脏大小正常（未增大），并表现出均匀的实质密度，表明没有局部病变、囊肿或病理性密度变化。
@@ -151,21 +151,9 @@
                 </div>
 
             </div>
-            <!-- <div tabindex="1" class="collapse bg-base-100 border-base-300 border">
-                <div class="collapse-title font-semibold">How do I create an account1?</div>
-                <div class="collapse-content text-sm">
-                  Click the "Sign Up" button in the top right corner and follow the registration process.
-                </div>
-            </div>
-            <div tabindex="0" class="collapse bg-base-100 border-base-300 border">
-                <div class="collapse-title font-semibold">How do I create an account?</div>
-                <div class="collapse-content text-sm">
-                  Click the "Sign Up" button in the top right corner and follow the registration process.
-                </div>
-            </div> -->
         </div>
     </div>
-    <div class="w-full max-w-6xl mx-auto p-4 mb-8">
+    <div class="w-900 max-w-6xl mt-4">
         <div class="p-4 bg-base-200 rounded-lg">
             <div class="relative">
                 <textarea id="citation-text" readonly class="textarea textarea-bordered w-full bg-base-100 pr-12"
@@ -220,7 +208,7 @@
     <script type="module" async>
         import { Niivue } from "https://unpkg.com/@niivue/niivue@0.57.0/dist/index.js"
         var volumeList = [
-            { url: "static/images/amos_5001.nii.gz" },
+            { url: "https://f004.backblazeb2.com/file/public-ea/amos_5001.nii.gz" },
         ];
         var nv = new Niivue({ isResizeCanvas: true });
         await nv.attachTo("gl");
