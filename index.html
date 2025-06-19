@@ -56,7 +56,7 @@
                 <div class="card-body">
                     <h2 class="card-title">CT Image</h2>
                     <div class="flex flex-col gap-4">
-                        <canvas id="gl" width="640" height="840" class="rounded-lg"></canvas>
+                        <!-- <canvas id="gl" width="480" height="480" class="rounded-lg"></canvas> -->
                     </div>
                 </div>
             </div>
@@ -208,11 +208,11 @@
     <script type="module" async>
         import { Niivue } from "https://unpkg.com/@niivue/niivue@0.57.0/dist/index.js"
         var volumeList = [
-            { url: "https://f004.backblazeb2.com/file/public-ea/train_16210_a_1.nii.gz" },
+            { url: "./train_16210_a_1.nii.gz" },
         ];
-        var nv = new Niivue({ isResizeCanvas: true });
-        await nv.attachTo("gl");
-        await nv.loadVolumes(volumeList);
+        // var nv = new Niivue({ isResizeCanvas: true });
+        // await nv.attachTo("gl");
+        // await nv.loadVolumes(volumeList);
     </script>
 </body>
 
