@@ -67,8 +67,7 @@
       <div class="container is-max-desktop">
         <div class="columns is-centered">
           <div class="column has-text-centered">
-            <h1 class="title is-size-1-desktop is-size-2-tablet is-size-3-mobile publication-title">
-                μ²Tokenizer: Differentiable Multi-Scale Multi-Modal Tokenizer for Radiology Report Generation
+            <h1 class="title is-size-1-desktop is-size-2-tablet is-size-3-mobile publication-title"><img src="static/images/logo.png" alt="logo" class="inline-block h-10 mr-2">μ²Tokenizer: Differentiable Multi-Scale Multi-Modal Tokenizer for Radiology Report Generation
             </h1>
             <div class="is-size-5 publication-authors">
               <!-- Paper authors -->
@@ -142,7 +141,7 @@
         <!-- 左边容器 -->
         <div class="w-full">
             <div class="card bg-white shadow-xl rounded-none w-full">
-                <canvas id="gl" class="rounded-lg w-full h-[300px] md:h-[420px] lg:h-[840px]"></canvas>
+                <canvas id="gl" class="rounded-lg w-full h-[360px] md:h-[480px] lg:h-[840px]"></canvas>
             </div>
         </div>
         <!-- 右边 tab 容器 -->
@@ -155,7 +154,7 @@
                     </div>
                     <div class="chat chat-start">
                         <div class="chat-bubble">
-                            <div tabindex="0" class="collapse bg-info">
+                            <div tabindex="0" class="collapse bg-gray-200">
                                 <input type="checkbox" />
                                 <div class="collapse-title font-semibold">Thinking</div>
                                 <div class="collapse-content text-sm">
@@ -203,7 +202,7 @@
                     </div>
                     <div class="chat chat-start">
                         <div class="chat-bubble">
-                            <div tabindex="0" class="collapse bg-info">
+                            <div tabindex="0" class="collapse bg-gray-200">
                                 <input type="checkbox" />
                                 <div class="collapse-title font-semibold">Thinking</div>
                                 <div class="collapse-content text-sm">
@@ -222,7 +221,7 @@
                     </div>
                     <div class="chat chat-start">
                         <div class="chat-bubble">
-                            <div tabindex="0" class="collapse bg-info">
+                            <div tabindex="0" class="collapse bg-gray-200">
                                 <input type="checkbox" />
                                 <div class="collapse-title font-semibold">Thinking</div>
                                 <div class="collapse-content text-sm">
@@ -586,7 +585,7 @@
         var volumeList = [
             { url: "static/images/amos_5001.nii.gz" },
         ];
-        var nv = new Niivue({ isResizeCanvas: true });
+        var nv = new Niivue({ isResizeCanvas: true, backColor: [1, 1, 1, 1] });
         await nv.attachTo("gl");
         await nv.loadVolumes(volumeList);
         nv.setSliceType(nv.sliceTypeMultiplanar);
