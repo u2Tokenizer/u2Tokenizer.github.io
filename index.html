@@ -122,7 +122,7 @@
   <div class="container is-max-desktop">
     <div class="hero-body">
       <!-- Your image here -->
-        <img src="static/images/cover.svg" alt="MY ALT TEXT"/>
+        <img src="static/images/cover.svg" alt="MY ALT TEXT" style="max-width: 85%; height: auto;"/>
         <h2 class="subtitle has-text-centered">
           ...
         </h2>
@@ -134,7 +134,6 @@
 </section>
 <!-- End teaser video -->
 
-<!-- Paper Overview -->
 <section class="section hero is-light">
   <div class="container is-max-desktop">
     <div class="columns is-centered has-text-centered">
@@ -153,8 +152,56 @@
     </div>
   </div>
 </section>
-<!-- End paper Overview -->
 
+<section class="section hero is-small">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-full">
+        <div class="content">
+          <h2 class="title is-3">Key Contributions</h2>
+
+          <div class="columns">
+            <li><strong>μ²LLM Framework</strong>: We propose a novel multi-modal large language model (MLLM) designed to efficiently preserve critical details from medical imaging by integrating guided questions.</li>
+            <li><strong>μ² Tokenizer Layer</strong>: The core of our framework is the μ² Tokenizer, an intermediate layer that uses multi-level attention and multi-scale aggregation to refine and fuse visual and text embeddings, maximizing semantic correspondence while maintaining computational efficiency.</li>
+            <li><strong>Enhanced Training with DPO</strong>: We employ Direct Preference Optimization (DPO) to align our model&#39;s outputs with expert-validated clinical accuracy. The preference data is curated using the GREEN score, a robust LLM-based metric for evaluating the clinical accuracy of radiology reports.</li>
+            <li><strong>State-of-the-Art Performance</strong>: Despite its smaller parameter size (1B), our model consistently outperforms larger baseline models (7B to 14B) across multiple datasets, demonstrating the effectiveness of our approach.</li>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section hero is-light">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Model Architecture</h2>
+        <div class="content has-text-justified">
+        <p>The μ²LLM framework integrates a 3D Vision Transformer (ViT3D) as the image encoder and a large language model (LLM) for report generation. The key innovation, the <strong>μ² Tokenizer</strong>, acts as a bridge between them.</p>
+        <p><strong>Overall Pipeline (<code>μ²LLM</code>)</strong>
+        <img src="/mother/static/images/u2llm.svg" alt="Weight distance correlation" class="blend-img-background center-image" style="max-width: 85%; height: auto;">
+        <em>Fig. 1: Overview of our proposed µ²LLM model that is centered with the μ² Tokenizer layer for high quality RRG task.</em> </p>
+        <ol>
+        <li><strong>Input</strong>: A 3D CT scan and a related textual question (e.g., &quot;Can you provide a diagnosis based on the findings in the abdomen?&quot;).</li>
+        <li><strong>Image Encoder (ViT3D)</strong>: The CT scan is split into multiple frames to avoid information loss from downsampling. The ViT3D processes these frames to extract a sequence of visual tokens.</li>
+        <li><strong>μ² Tokenizer</strong>: This layer takes the visual tokens from the encoder and the tokenized question. It uses multi-scale attention mechanisms to fuse the two modalities, producing a compact and information-rich set of embeddings.</li>
+        <li><strong>LLM</strong>: The final image embeddings are passed to the LLM along with the original question to generate the detailed radiology report.</li>
+        </ol>
+        <h3 id="the-tokenizer-module">The μ² Tokenizer Module</h3>
+        <p>The μ² Tokenizer is built upon the Linear Video Tokenizer (LinVT)  and introduces three key improvements:</p>
+        <ul>
+        <li><strong>Relative Positional Encoding (RPE)</strong>: Instead of absolute positions, we use relative positional encodings within the attention mechanism. This allows the model to better capture local relationships between different areas of the 3D scan, which is crucial for identifying anatomical patterns.</li>
+        <li><strong>Differentiable Token Selection (DTS)</strong>: Traditional &quot;hard&quot; top-k token selection can lead to information loss and slow optimization. We replace it with a fully differentiable &quot;soft&quot; selection, which computes a weighted sum of all tokens. This preserves more information and allows gradients to flow back to all visual tokens, improving training stability.</li>
+        <li><strong>Dynamic Multi-scale Pooling (DMTP)</strong>: Rather than using fixed pooling kernel sizes, our dynamic approach allows the network to learn how to weight and select the most appropriate pooling strategy based on the input, making the feature extraction process more adaptive and effective.</li>
+        </ul>
+        <hr>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
 <!-- Image carousel -->
 <section class="hero is-small">
