@@ -296,47 +296,39 @@
 
                 <input type="radio" name="my_tabs_1" class="tab" aria-label="QA(English)" />
                 <div id="content-en" class="tab-content bg-base-100 border-base-300 p-6" style="max-height: 600px;">
-                  <div class="chat chat-end">
-                    <div class="chat-bubble bg-base-200 text-black">What conclusions can be drawn about the spleen’s
-                      size and parenchymal density?</div>
-                  </div>
-                  <div class="chat chat-start">
-                    <div class="chat-bubble bg-base-200 text-black">
-                      <div tabindex="0" class="collapse">
-                        <input type="checkbox" />
-                        <div class="collapse-title font-semibold">Thinking</div>
-                        <div class="collapse-content text-sm">
-                          When reviewing the radiology image, the section describing the spleen explicitly states that
-                          it is "not enlarged" and has "uniform parenchymal density." These findings indicate no
-                          abnormal enlargement (splenomegaly) and no focal lesions or heterogeneity in density, which
-                          would otherwise suggest pathology such as cysts, tumors, or inflammatory changes. The absence
-                          of abnormal enhancement further supports the conclusion that the spleen appears normal on
-                          imaging.
-                        </div>
-                      </div>
-                      The spleen is of normal size (not enlarged) and demonstrates uniform parenchymal density,
-                      indicating no focal lesions, cysts, or pathological density changes.
+                    <div class="chat chat-end">
+                        <div class="chat-bubble bg-base-200 text-black">What does the thickened gastric mucosa (12mm) with uneven and obvious enhancement in the stomach suggest? </div>
                     </div>
-                  </div>
+                    <div class="chat chat-start">
+                        <div class="chat-bubble bg-base-200 text-black">
+                            <div tabindex="0" class="collapse">
+                                <input type="checkbox" />
+                                <div class="collapse-title font-semibold text-gray-400">Thinking</div>
+                                <div class="collapse-content text-sm">
+                                    The gastric mucosa thickens to 12mm, exceeding normal physiological limits (typically small 5-10mm). The appearance shows uneven and obvious enhancement, suggesting an infiltrative process disrupting the gastric wall's vascular architecture. Heterogeneous enhancement is often associated with neoplastic or inflammatory conditions. Malignancy (e.g., gastric adenocarcinoma) is a key concern due to the irregular enhancement pattern, which reflects disorganized tumor vascularity and necrosis. Lymphoma or severe gastritis could also present similarly, but the lack of systemic findings (e.g., lymphadenopathy) and the focal nature favor a primary malignant process. The absence of other acute findings (e.g., ulcerations) further raises suspicion for malignancy.
+                                </div>
+                            </div>
+                            The thickened gastric mucosa with uneven, obvious enhancement raises concern for gastric malignancy, particularly adenocarcinoma, due to the irregular vascular pattern and significant wall thickening. Differential diagnoses include lymphoma or severe inflammatory gastritis, but malignancy is the most critical consideration.
+                        </div>
+                    </div>
                 </div>
 
                 <input type="radio" name="my_tabs_1" class="tab" aria-label="QA(Chinese)" />
-                <div id="content-zh" class="tab-content bg-base-100 border-base-300 p-6 overflow-y-auto"
-                  style="max-height: 600px;">
-                  <div class="chat chat-end">
-                    <div class="chat-bubble bg-base-200 text-black">关于脾脏的大小和实质密度，可以得出什么结论？</div>
-                  </div>
-                  <div class="chat chat-start">
-                    <div class="chat-bubble bg-base-200 text-black">
-                      <div tabindex="0" class="collapse">
-                        <input type="checkbox" />
-                        <div class="collapse-title font-semibold">Thinking</div>
-                        <div class="collapse-content text-sm">
-                          查看放射影像时，描述脾脏的部分明确指出它“未增大”且具有“均匀的实质密度”。这些发现表明没有异常增大（脾大）和没有局部病变或密度的不均匀性，否则可能表明存在囊肿、肿瘤或炎症变化等病理变化。没有异常增强的现象进一步支持了这样的结论：在影像学检查中，脾脏似乎是正常的。
-                        </div>
-                      </div>
-                      脾脏大小正常（未增大），并表现出均匀的实质密度，表明没有局部病变、囊肿或病理性密度变化。
+                <div id="content-zh" class="tab-content bg-base-100 border-base-300 p-6 overflow-y-auto" style="max-height: 600px;">
+                    <div class="chat chat-end">
+                        <div class="chat-bubble bg-base-200 text-black">肾脏有哪些异常，特别是在位置、形状和囊肿病变方面？</div>
                     </div>
+                    <div class="chat chat-start">
+                        <div class="chat-bubble bg-base-200 text-black">
+                            <div tabindex="0" class="collapse">
+                                <input type="checkbox" />
+                                <div class="collapse-title font-semibold">Thinking</div>
+                                <div class="collapse-content text-sm">
+                                    在评估肾脏时，我首先评估它们的位置，并指出左肾被视为“位置略低”，这代表了位置异常。接下来，“两个肾脏的形状正常，”表明没有结构扭曲或畸形。关于囊肿病变，在两个肾脏中都发现了“多个低密度囊肿病变”，右中极较大的病变尺寸为13毫米×17毫米。这些病变缺乏异常增强，表明良性囊肿变化。此外，双侧肾盆、萀和输尿管没有扩张排除了阻塞性病理。
+                                </div>
+                            </div>
+                            肾脏表现出位置异常，左肾位置略低。两个肾脏的形状都是正常的。两个肾脏都存在多个低密度囊肿病变，包括右肾中极的较大病变，尺寸为13毫米×17毫米；这些病变没有异常增强。没有观察到肾盆、花萞或输尿管扩张。
+                        </div>
                     </div>
                   </div>
                 </div>
@@ -490,7 +482,7 @@
         </tr>
         <tr>
         <td style="text-align:left"></td>
-        <td style="text-align:left"><strong>μ²LLM-1B (SFT\&amp;DPO)</strong></td>
+        <td style="text-align:left"><strong>μ²LLM-1B (SFT&ampDPO)</strong></td>
         <td style="text-align:center"><strong>0.567</strong></td>
         <td style="text-align:center"><strong>0.346</strong></td>
         <td style="text-align:center"><strong>0.319</strong></td>
@@ -538,7 +530,7 @@
         </tr>
         <tr>
         <td style="text-align:left"></td>
-        <td style="text-align:left"><strong>μ²LLM-1B (SFT\&amp;DPO)</strong></td>
+        <td style="text-align:left"><strong>μ²LLM-1B (SFT&ampDPO)</strong></td>
         <td style="text-align:center"><strong>0.539</strong></td>
         <td style="text-align:center"><strong>0.429</strong></td>
         <td style="text-align:center"><strong>0.359</strong></td>
@@ -578,7 +570,7 @@
         </tr>
         <tr>
         <td style="text-align:left"></td>
-        <td style="text-align:left"><strong>μ²LLM-1B (SFT\&amp;DPO)</strong></td>
+        <td style="text-align:left"><strong>μ²LLM-1B (SFT&ampDPO)</strong></td>
         <td style="text-align:center"><strong>0.459</strong></td>
         <td style="text-align:center"><strong>0.400</strong></td>
         <td style="text-align:center"><strong>0.876</strong></td>
@@ -642,7 +634,7 @@
         <td style="text-align:center">0.881</td>
         </tr>
         <tr>
-        <td style="text-align:left"><strong>μ²LLM-1B (SFT\&amp;DPO)</strong></td>
+        <td style="text-align:left"><strong>μ²LLM-1B (SFT&ampDPO)</strong></td>
         <td style="text-align:center"><strong>0.336</strong></td>
         <td style="text-align:center"><strong>0.459</strong></td>
         <td style="text-align:center"><strong>0.400</strong></td>
