@@ -1,5 +1,7 @@
 body {
   font-family: 'Noto Sans', sans-serif;
+  background-color: #fff;
+  color: #000;
 }
 
 
@@ -168,6 +170,12 @@ body {
   #demo-section canvas {
     height: 840px;
   }
+}
+
+/* Ensure chat bubbles wrap lines and scroll vertically */
+.chat-bubble {
+  white-space: pre-line;
+  max-width: 100%;
 }
 
 

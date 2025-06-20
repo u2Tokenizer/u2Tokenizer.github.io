@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html data-theme="light" class="bg-white text-black">
 <head>
   <meta charset="utf-8">
   <!-- Meta tags for social media banners, these should be filled in appropriatly as they are your "business card" -->
@@ -222,24 +222,24 @@
 </section>
 
 <!-- Demo section -->
-<div id="demo-section" class="w-full max-w-6xl mx-auto flex flex-col lg:flex-row gap-4 p-4 rounded-lg bg-base-200 items-start lg:h-[840px]">
+<div id="demo-section" class="w-full max-w-6xl mx-auto flex flex-col gap-4 p-4 rounded-lg bg-white text-black items-start lg:h-[840px]">
         <!-- 左边容器 -->
-        <div class="w-full lg:w-1/3">
-            <div class="card bg-base-100 shadow-xl rounded-r-none h-full">
+        <div class="w-full">
+            <div class="card bg-white shadow-xl rounded-none w-full">
                 <canvas id="gl" class="rounded-lg w-full h-[300px] md:h-[420px] lg:h-[840px]"></canvas>
             </div>
         </div>
         <!-- 右边 tab 容器 -->
-        <div class="w-full lg:w-2/3 relative">
-            <div class="tabs tabs-lifted tabs-s card bg-base-100 shadow-xl rounded-l-none h-full flex flex-col">
+        <div class="w-full relative">
+            <div class="tabs tabs-lifted tabs-s card bg-white shadow-xl rounded-none h-full flex flex-col">
                 <input type="radio" name="my_tabs_1" class="tab min-w-3xs" aria-label="Report Generation" checked="checked" />
-                <div id="content-mrg" class="tab-content bg-base-100 border-base-300 p-6 h-[300px] md:h-[420px] lg:h-[840px] overflow-y-auto">
+                <div id="content-mrg" class="tab-content bg-white text-black border-base-300 p-6 h-[300px] md:h-[420px] lg:h-[840px] overflow-y-auto">
                     <div class="chat chat-end">
                         <div class="chat-bubble">Describe this scan's findings.</div>
                     </div>
                     <div class="chat chat-start">
                         <div class="chat-bubble">
-                            <div tabindex="0" class="collapse bg-base-200">
+                            <div tabindex="0" class="collapse bg-white text-black">
                                 <input type="checkbox" />
                                 <div class="collapse-title font-semibold">Thinking</div>
                                 <div class="collapse-content text-sm">
@@ -281,13 +281,13 @@
                 </div>
               
                 <input type="radio" name="my_tabs_1" class="tab min-w-3xs" aria-label="QA(English)" />
-                <div id="content-en" class="tab-content bg-base-100 border-base-300 p-6 h-[300px] md:h-[420px] lg:h-[840px] overflow-y-auto">
+                <div id="content-en" class="tab-content bg-white text-black border-base-300 p-6 h-[300px] md:h-[420px] lg:h-[840px] overflow-y-auto">
                     <div class="chat chat-end">
                         <div class="chat-bubble">What conclusions can be drawn about the spleen’s size and parenchymal density?</div>
                     </div>
                     <div class="chat chat-start">
                         <div class="chat-bubble">
-                            <div tabindex="0" class="collapse bg-base-200">
+                            <div tabindex="0" class="collapse bg-white text-black">
                                 <input type="checkbox" />
                                 <div class="collapse-title font-semibold">Thinking</div>
                                 <div class="collapse-content text-sm">
@@ -300,13 +300,13 @@
                 </div>
               
                 <input type="radio" name="my_tabs_1" class="tab min-w-3xs" aria-label="QA(Chinese)" />
-                <div id="content-zh" class="tab-content bg-base-100 border-base-300 p-6 h-[300px] md:h-[420px] lg:h-[840px] overflow-y-auto">
+                <div id="content-zh" class="tab-content bg-white text-black border-base-300 p-6 h-[300px] md:h-[420px] lg:h-[840px] overflow-y-auto">
                     <div class="chat chat-end">
                         <div class="chat-bubble">关于脾脏的大小和实质密度，可以得出什么结论？</div>
                     </div>
                     <div class="chat chat-start">
                         <div class="chat-bubble">
-                            <div tabindex="0" class="collapse bg-base-200">
+                            <div tabindex="0" class="collapse bg-white text-black">
                                 <input type="checkbox" />
                                 <div class="collapse-title font-semibold">Thinking</div>
                                 <div class="collapse-content text-sm">
@@ -325,7 +325,7 @@
                   Click the "Sign Up" button in the top right corner and follow the registration process.
                 </div>
             </div>
-            <div tabindex="0" class="collapse bg-base-100 border-base-300 border">
+            <div tabindex="0" class="collapse bg-white text-black border-base-300 border">
                 <div class="collapse-title font-semibold">How do I create an account?</div>
                 <div class="collapse-content text-sm">
                   Click the "Sign Up" button in the top right corner and follow the registration process.
@@ -378,6 +378,7 @@
         var nv = new Niivue({ isResizeCanvas: true });
         await nv.attachTo("gl");
         await nv.loadVolumes(volumeList);
+        nv.setSliceType(nv.sliceTypeMultiplanar);
     </script>
   </body>
   <script type="module" async>
