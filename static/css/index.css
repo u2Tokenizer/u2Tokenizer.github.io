@@ -196,3 +196,20 @@ body {
     font-size: 0.875rem;
   }
 }
+
+.site-header {
+  display: flex;
+  align-items: center;    /* 垂直居中 */
+  gap: 1rem;              /* logo 与文字间距 */
+}
+
+/* 响应式 logo 宽度：最小 40px，优选 8vw（视口宽度的 8%），最大 100px */
+.logo {
+  width: clamp(40px, 8vw, 100px);
+  height: auto;           /* 保持纵横比 */
+}
+
+/* 标题可根据需要微调 */
+.site-title {
+  font-size: 1.5rem;
+}
