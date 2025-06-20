@@ -221,6 +221,237 @@
   </div>
 </section>
 
+<section class="section hero is-small">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-full">
+        <div class="content">
+          <p>Our model was evaluated on several benchmark datasets against various high-performing LLMs. We used both traditional metrics (ROUGE, METEOR, BERTScore) and the advanced LLM-based <strong>GREEN</strong> score, which measures clinical accuracy.</p>
+        <h3 id="performance-comparison">Performance Comparison</h3>
+        <p>μ²LLM achieves state-of-the-art results across all datasets, significantly outperforming larger models like LaMed-Llama-2-7B and RadFM-14B The use of DPO fine-tuned with GREEN scores further boosted performance, with a notable <strong>20% improvement</strong> in the GREEN score on average.</p>
+        <p><strong>Table 1: Performance Comparison Across Different Datasets</strong></p>
+        <table>
+        <thead>
+        <tr>
+        <th style="text-align:left">Datasets</th>
+        <th style="text-align:left">Models</th>
+        <th style="text-align:center">ROUGE-1</th>
+        <th style="text-align:center">GREEN</th>
+        <th style="text-align:center">METEOR</th>
+        <th style="text-align:center">BERTScore</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+        <td style="text-align:left"></td>
+        <td style="text-align:left">LaMed-Phi-3-4B</td>
+        <td style="text-align:center">0.136</td>
+        <td style="text-align:center">0.011</td>
+        <td style="text-align:center">0.058</td>
+        <td style="text-align:center">0.807</td>
+        </tr>
+        <tr>
+        <td style="text-align:left"></td>
+        <td style="text-align:left">LaMed-Llama-2-7B</td>
+        <td style="text-align:center">0.139</td>
+        <td style="text-align:center">0.009</td>
+        <td style="text-align:center">0.060</td>
+        <td style="text-align:center">0.810</td>
+        </tr>
+        <tr>
+        <td style="text-align:left"><strong>Abdomen Atlas</strong></td>
+        <td style="text-align:left">RadFM-14B</td>
+        <td style="text-align:center">0.037</td>
+        <td style="text-align:center">0.000</td>
+        <td style="text-align:center">0.013</td>
+        <td style="text-align:center">0.794</td>
+        </tr>
+        <tr>
+        <td style="text-align:left"></td>
+        <td style="text-align:left">RadGPT-N</td>
+        <td style="text-align:center">0.247</td>
+        <td style="text-align:center"></td>
+        <td style="text-align:center">0.112</td>
+        <td style="text-align:center"></td>
+        </tr>
+        <tr>
+        <td style="text-align:left"></td>
+        <td style="text-align:left"><strong>μ²LLM-1B (SFT)</strong></td>
+        <td style="text-align:center"><strong>0.529</strong></td>
+        <td style="text-align:center"><strong>0.281</strong></td>
+        <td style="text-align:center"><strong>0.295</strong></td>
+        <td style="text-align:center"><strong>0.891</strong></td>
+        </tr>
+        <tr>
+        <td style="text-align:left"></td>
+        <td style="text-align:left"><strong>μ²LLM-1B (SFT\&amp;DPO)</strong></td>
+        <td style="text-align:center"><strong>0.567</strong></td>
+        <td style="text-align:center"><strong>0.346</strong></td>
+        <td style="text-align:center"><strong>0.319</strong></td>
+        <td style="text-align:center"><strong>0.895</strong></td>
+        </tr>
+        <tr>
+        <td style="text-align:left"></td>
+        <td style="text-align:left">LaMed-Phi-3-4B</td>
+        <td style="text-align:center">0.130</td>
+        <td style="text-align:center">0.002</td>
+        <td style="text-align:center">0.050</td>
+        <td style="text-align:center">0.814</td>
+        </tr>
+        <tr>
+        <td style="text-align:left"></td>
+        <td style="text-align:left">LaMed-Llama-2-7B</td>
+        <td style="text-align:center">0.103</td>
+        <td style="text-align:center">0.001</td>
+        <td style="text-align:center">0.048</td>
+        <td style="text-align:center">0.815</td>
+        </tr>
+        <tr>
+        <td style="text-align:left"><strong>CT-Rate</strong></td>
+        <td style="text-align:left">RadFM-14B</td>
+        <td style="text-align:center">0.054</td>
+        <td style="text-align:center">0.014</td>
+        <td style="text-align:center">0.017</td>
+        <td style="text-align:center">0.812</td>
+        </tr>
+        <tr>
+        <td style="text-align:left"></td>
+        <td style="text-align:left">CT-CHAT-8B</td>
+        <td style="text-align:center">0.294</td>
+        <td style="text-align:center">0.113</td>
+        <td style="text-align:center">0.221</td>
+        <td style="text-align:center">0.815</td>
+        </tr>
+        <tr>
+        <td style="text-align:left"></td>
+        <td style="text-align:left"><strong>μ²LLM-1B (SFT)</strong></td>
+        <td style="text-align:center"><strong>0.517</strong></td>
+        <td style="text-align:center"><strong>0.384</strong></td>
+        <td style="text-align:center"><strong>0.330</strong></td>
+        <td style="text-align:center"><strong>0.879</strong></td>
+        </tr>
+        <tr>
+        <td style="text-align:left"></td>
+        <td style="text-align:left"><strong>μ²LLM-1B (SFT\&amp;DPO)</strong></td>
+        <td style="text-align:center"><strong>0.539</strong></td>
+        <td style="text-align:center"><strong>0.429</strong></td>
+        <td style="text-align:center"><strong>0.359</strong></td>
+        <td style="text-align:center"><strong>0.890</strong></td>
+        </tr>
+        <tr>
+        <td style="text-align:left"></td>
+        <td style="text-align:left">LaMed-Phi-3-4B</td>
+        <td style="text-align:center">0.126</td>
+        <td style="text-align:center">0.009</td>
+        <td style="text-align:center">0.047</td>
+        <td style="text-align:center">0.821</td>
+        </tr>
+        <tr>
+        <td style="text-align:left"></td>
+        <td style="text-align:left">LaMed-Llama-2-7B</td>
+        <td style="text-align:center">0.163</td>
+        <td style="text-align:center">0.009</td>
+        <td style="text-align:center">0.065</td>
+        <td style="text-align:center">0.823</td>
+        </tr>
+        <tr>
+        <td style="text-align:left"><strong>AMOS-MM</strong></td>
+        <td style="text-align:left">RadFM-14B</td>
+        <td style="text-align:center">0.046</td>
+        <td style="text-align:center">0.001</td>
+        <td style="text-align:center">0.015</td>
+        <td style="text-align:center">0.812</td>
+        </tr>
+        <tr>
+        <td style="text-align:left"></td>
+        <td style="text-align:left"><strong>μ²LLM-1B (SFT)</strong></td>
+        <td style="text-align:center"><strong>0.421</strong></td>
+        <td style="text-align:center"><strong>0.339</strong></td>
+        <td style="text-align:center"><strong>0.249</strong></td>
+        <td style="text-align:center"><strong>0.881</strong></td>
+        </tr>
+        <tr>
+        <td style="text-align:left"></td>
+        <td style="text-align:left"><strong>μ²LLM-1B (SFT\&amp;DPO)</strong></td>
+        <td style="text-align:center"><strong>0.459</strong></td>
+        <td style="text-align:center"><strong>0.400</strong></td>
+        <td style="text-align:center"><strong>0.876</strong></td>
+        <td style="text-align:center"><strong>0.881</strong></td>
+        </tr>
+        </tbody>
+        </table>
+        <h3 id="ablation-study">Ablation Study</h3>
+        <p>Ablation experiments confirmed that each component of the μ² Tokenizer contributes positively to the model&#39;s performance. Differentiable Token Selection (DTS) provided the most significant boost, improving the GREEN score by up to 0.2 points.</p>
+        <p><strong>Table 2: Ablation Study on μ² Tokenizer Components</strong></p>
+        <table>
+        <thead>
+        <tr>
+        <th style="text-align:left">Model</th>
+        <th style="text-align:center">BLEU</th>
+        <th style="text-align:center">ROUGE-1</th>
+        <th style="text-align:center">GREEN</th>
+        <th style="text-align:center">METEOR</th>
+        <th style="text-align:center">BERTScore</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+        <td style="text-align:left">Baseline</td>
+        <td style="text-align:center">0.190</td>
+        <td style="text-align:center">0.405</td>
+        <td style="text-align:center">0.204</td>
+        <td style="text-align:center">0.210</td>
+        <td style="text-align:center">0.864</td>
+        </tr>
+        <tr>
+        <td style="text-align:left">+RPE</td>
+        <td style="text-align:center">0.281</td>
+        <td style="text-align:center">0.421</td>
+        <td style="text-align:center">0.277</td>
+        <td style="text-align:center">0.236</td>
+        <td style="text-align:center">0.880</td>
+        </tr>
+        <tr>
+        <td style="text-align:left">+DTS</td>
+        <td style="text-align:center">0.271</td>
+        <td style="text-align:center">0.411</td>
+        <td style="text-align:center">0.299</td>
+        <td style="text-align:center">0.240</td>
+        <td style="text-align:center">0.888</td>
+        </tr>
+        <tr>
+        <td style="text-align:left">+DMTP</td>
+        <td style="text-align:center">0.254</td>
+        <td style="text-align:center">0.401</td>
+        <td style="text-align:center">0.233</td>
+        <td style="text-align:center">0.220</td>
+        <td style="text-align:center">0.874</td>
+        </tr>
+        <tr>
+        <td style="text-align:left"><strong>μ²LLM-1B (SFT)</strong></td>
+        <td style="text-align:center">0.279</td>
+        <td style="text-align:center">0.421</td>
+        <td style="text-align:center">0.339</td>
+        <td style="text-align:center">0.249</td>
+        <td style="text-align:center">0.881</td>
+        </tr>
+        <tr>
+        <td style="text-align:left"><strong>μ²LLM-1B (SFT\&amp;DPO)</strong></td>
+        <td style="text-align:center"><strong>0.336</strong></td>
+        <td style="text-align:center"><strong>0.459</strong></td>
+        <td style="text-align:center"><strong>0.400</strong></td>
+        <td style="text-align:center"><strong>0.876</strong></td>
+        <td style="text-align:center"><strong>0.881</strong></td>
+        </tr>
+        </tbody>
+        </table>
+        <hr>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- Demo section -->
 <div id="demo-section" class="w-full max-w-6xl mx-auto flex flex-col gap-4 p-4 rounded-lg bg-white text-black items-start lg:h-[840px]">
         <!-- 左边容器 -->
