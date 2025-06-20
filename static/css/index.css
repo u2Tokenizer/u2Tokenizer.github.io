@@ -7,7 +7,6 @@ body {
 
 .footer .icon-link {
     font-size: 25px;
-    color: #000;
 }
 
 .link-block a {
@@ -174,23 +173,14 @@ body {
 
 /* Ensure chat bubbles wrap lines and scroll vertically */
 .chat-bubble {
-  background-color: #fff;
-  color: #000;
-  border: 1px solid #e5e7eb;
   white-space: pre-line;
   max-width: 100%;
 }
 
-
-
 .collapse {
   background-color: #e5e7eb;
 }
-#Responsive chat content
-#content-mrg, #content-en, #content-zh {
-  width: 100%;
-  max-width: 100%;
-}
+
 @media (max-width: 640px) {
   #content-mrg, #content-en, #content-zh {
     font-size: 0.875rem;
@@ -205,3 +195,14 @@ body {
     object-fit: contain;/* 避免裁切，必要时可用 cover */
     justify-content: center
   }
+
+/* Custom tab styles to align tabs to the left instead of uniform distribution */
+.tabs {
+  justify-content: flex-start !important;
+}
+
+.tabs .tab {
+  flex: none !important;
+  width: auto !important;
+  margin-right: 0.5rem;
+}

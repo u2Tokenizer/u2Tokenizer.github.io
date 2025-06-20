@@ -163,14 +163,15 @@
 
 <!-- Demo section -->
 <section class="section hero is-small">
+  <div class="hero-body">
   <div class="container is-max-desktop">
-    <div class="columns is-centered">
+    <div class="columns is-centered has-text-centered">
       <div class="column is-full">
         <div class="content has-text-justified">
-            <div class="w-full h-[160px]">
+            <div class="w-full h-[160px] mb-5 border-solid border-base-300 rounded-lg">
               <canvas id="gl"></canvas>
             </div>
-            <div class="flex-1 relative rounded-l-none">
+            <div class="relative rounded-l-none">
               <div class="tabs tabs-lift">
                 <input type="radio" name="my_tabs_1" class="tab" aria-label="Report Generation" checked="checked" />
                 <div id="content-mrg" class="tab-content bg-base-100 border-base-300 p-6 overflow-y-auto"
@@ -306,7 +307,7 @@
                     <div class="chat-bubble bg-base-200 text-black">
                       <div tabindex="0" class="collapse">
                         <input type="checkbox" />
-                        <div class="collapse-title font-semibold text-gray-400">Thinking</div>
+                        <div class="collapse-title font-semibold">Thinking</div>
                         <div class="collapse-content text-sm">
                           When reviewing the radiology image, the section describing the spleen explicitly states that
                           it is "not enlarged" and has "uniform parenchymal density." These findings indicate no
@@ -338,6 +339,7 @@
                         </div>
                       </div>
                       脾脏大小正常（未增大），并表现出均匀的实质密度，表明没有局部病变、囊肿或病理性密度变化。
+                    </div>
                     </div>
                   </div>
                 </div>
