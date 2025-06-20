@@ -159,7 +159,7 @@ body {
 
 @media (max-width: 1023px) {
   #demo-section canvas {
-    height: 300px;
+    height: 360px;
   }
 }
 
@@ -174,9 +174,25 @@ body {
 
 /* Ensure chat bubbles wrap lines and scroll vertically */
 .chat-bubble {
+  background-color: #fff;
+  color: #000;
+  border: 1px solid #e5e7eb;
   white-space: pre-line;
   max-width: 100%;
 }
 
 
 
+.collapse {
+  background-color: #e5e7eb;
+}
+# Responsive chat content
+#content-mrg, #content-en, #content-zh {
+  width: 100%;
+  max-width: 100%;
+}
+@media (max-width: 640px) {
+  #content-mrg, #content-en, #content-zh {
+    font-size: 0.875rem;
+  }
+}
