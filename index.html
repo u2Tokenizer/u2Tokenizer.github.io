@@ -150,7 +150,7 @@
 <section class="section hero is-light">
   <div class="container is-max-desktop">
     <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
+      <div class="column is-full">
         <h2 class="title is-3">Overview</h2>
         <div class="content has-text-justified">
           <p>Automated radiology report generation (RRG) is a promising application of AI that aims to assist radiologists by producing detailed textual reports from medical images like CT scans. However, this task faces two major hurdles:</p>
@@ -194,7 +194,7 @@
 <section class="section hero is-light">
   <div class="container is-max-desktop">
     <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
+      <div class="column is-full">
         <h2 class="title is-3">Model Architecture</h2>
         <div class="content has-text-justified">
         <p>The μ²LLM framework integrates a 3D Vision Transformer (ViT3D) as the image encoder and a large language model (LLM) for report generation. The key innovation, the <strong>μ² Tokenizer</strong>, acts as a bridge between them.</p>
@@ -468,13 +468,13 @@
         <div class="flex-1 relative rounded-l-none">
             <div class="tabs tabs-lifted tabs-s">
                 <input type="radio" name="my_tabs_1" class="tab min-w-3xs" aria-label="Report Generation" checked="checked" />
-                <div id="content-mrg" class="tab-content bg-base-100 border-base-300 p-6">
+                <div id="content-mrg" class="tab-content bg-base-100 border-base-300 p-6 overflow-y-auto" style="max-height: 300px;">
                     <div class="chat chat-end">
                         <div class="chat-bubble">Describe this scan's findings.</div>
                     </div>
                     <div class="chat chat-start">
                         <div class="chat-bubble">
-                            <div tabindex="0" class="collapse bg-base-200">
+                            <div tabindex="0" class="collapse bg-info">
                                 <input type="checkbox" />
                                 <div class="collapse-title font-semibold">Thinking</div>
                                 <div class="collapse-content text-sm">
@@ -522,7 +522,7 @@
                     </div>
                     <div class="chat chat-start">
                         <div class="chat-bubble">
-                            <div tabindex="0" class="collapse bg-base-200">
+                            <div tabindex="0" class="collapse bg-info">
                                 <input type="checkbox" />
                                 <div class="collapse-title font-semibold">Thinking</div>
                                 <div class="collapse-content text-sm">
@@ -535,13 +535,13 @@
                 </div>
               
                 <input type="radio" name="my_tabs_1" class="tab min-w-3xs" aria-label="QA(Chinese)" />
-                <div id="content-zh" class="tab-content bg-base-100 border-base-300 p-6">
+                <div id="content-zh" class="tab-content bg-base-100 border-base-300 p-6 overflow-y-auto" style="max-height: 300px;">
                     <div class="chat chat-end">
                         <div class="chat-bubble">关于脾脏的大小和实质密度，可以得出什么结论？</div>
                     </div>
                     <div class="chat chat-start">
                         <div class="chat-bubble">
-                            <div tabindex="0" class="collapse bg-base-200">
+                            <div tabindex="0" class="collapse bg-info">
                                 <input type="checkbox" />
                                 <div class="collapse-title font-semibold">Thinking</div>
                                 <div class="collapse-content text-sm">
