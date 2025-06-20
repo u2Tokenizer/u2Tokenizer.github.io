@@ -197,7 +197,7 @@ body {
   }
 }
 
-.responsive-img {
+.logo-img {
     width: auto;        /* 横向占满容器 */
     height: auto;       /* 保持宽高比 */
     max-height: 100px;  /* 设定图片最高显示 400px */
