@@ -225,18 +225,18 @@
 </section>
 
 <!-- Demo section -->
-<div id="demo-section" class="w-full max-w-6xl mx-auto flex flex-col lg:flex-row gap-4 p-4 rounded-lg bg-base-200">
+<div id="demo-section" class="w-full max-w-6xl mx-auto flex flex-col lg:flex-row gap-4 p-4 rounded-lg bg-base-200 items-stretch">
         <!-- 左边容器 -->
-        <div class="flex-1">
-            <div class="card bg-base-100 shadow-xl rounded-r-none">
+        <div class="w-full lg:w-1/3">
+            <div class="card bg-base-100 shadow-xl rounded-r-none h-full">
                 <canvas id="gl" class="rounded-lg w-full h-[300px] md:h-[420px] lg:h-[840px]"></canvas>
             </div>
         </div>
         <!-- 右边 tab 容器 -->
-        <div class="flex-1 relative rounded-l-none">
-            <div class="tabs tabs-lifted tabs-s">
+        <div class="w-full lg:w-2/3 relative">
+            <div class="tabs tabs-lifted tabs-s card bg-base-100 shadow-xl rounded-l-none h-full flex flex-col">
                 <input type="radio" name="my_tabs_1" class="tab min-w-3xs" aria-label="Report Generation" checked="checked" />
-                <div id="content-mrg" class="tab-content bg-base-100 border-base-300 p-6">
+                <div id="content-mrg" class="tab-content bg-base-100 border-base-300 p-6 h-[300px] md:h-[420px] lg:h-[840px] overflow-y-auto">
                     <div class="chat chat-end">
                         <div class="chat-bubble">Describe this scan's findings.</div>
                     </div>
@@ -284,7 +284,7 @@
                 </div>
               
                 <input type="radio" name="my_tabs_1" class="tab min-w-3xs" aria-label="QA(English)" />
-                <div id="content-en" class="tab-content bg-base-100 border-base-300 p-6">
+                <div id="content-en" class="tab-content bg-base-100 border-base-300 p-6 h-[300px] md:h-[420px] lg:h-[840px] overflow-y-auto">
                     <div class="chat chat-end">
                         <div class="chat-bubble">What conclusions can be drawn about the spleen’s size and parenchymal density?</div>
                     </div>
@@ -303,7 +303,7 @@
                 </div>
               
                 <input type="radio" name="my_tabs_1" class="tab min-w-3xs" aria-label="QA(Chinese)" />
-                <div id="content-zh" class="tab-content bg-base-100 border-base-300 p-6">
+                <div id="content-zh" class="tab-content bg-base-100 border-base-300 p-6 h-[300px] md:h-[420px] lg:h-[840px] overflow-y-auto">
                     <div class="chat chat-end">
                         <div class="chat-bubble">关于脾脏的大小和实质密度，可以得出什么结论？</div>
                     </div>
