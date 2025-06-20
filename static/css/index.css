@@ -142,8 +142,29 @@ body {
   background: #000000;
 }
 
-.eql-cntrb { 
+.eql-cntrb {
   font-size: smaller;
+}
+
+/* Responsive layout for the demo section */
+#demo-section {
+  overflow: hidden;
+}
+
+#demo-section canvas {
+  width: 100%;
+}
+
+@media (max-width: 1023px) {
+  #demo-section canvas {
+    height: 300px;
+  }
+}
+
+@media (min-width: 1024px) {
+  #demo-section canvas {
+    height: 840px;
+  }
 }
 
 
