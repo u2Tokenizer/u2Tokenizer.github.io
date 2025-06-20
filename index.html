@@ -378,7 +378,15 @@
 <!-- You can add a tracker to track page visits by creating an account at statcounter.com -->
 
     <!-- End of Statcounter Code -->
-
+    <script type="module" async>
+        import { Niivue } from "https://unpkg.com/@niivue/niivue@0.57.0/dist/index.js"
+        var volumeList = [
+            { url: "static/images/amos_5001.nii.gz" },
+        ];
+        var nv = new Niivue({ isResizeCanvas: true });
+        await nv.attachTo("gl");
+        await nv.loadVolumes(volumeList);
+    </script>
   </body>
   <script type="module" async>
     // import { Niivue } from "https://unpkg.com/@niivue/niivue@0.57.0/dist/index.js"
