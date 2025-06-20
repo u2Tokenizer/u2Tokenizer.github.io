@@ -162,6 +162,9 @@ body {
 }
 
 @media (min-width: 1024px) {
+  #demo-section {
+    height: 840px;
+  }
   #demo-section canvas {
     height: 840px;
   }
