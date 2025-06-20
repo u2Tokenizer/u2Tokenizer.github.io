@@ -16,6 +16,19 @@ body {
 .dnerf {
   font-variant: small-caps;
 }
+.responsive-img {
+  width: 100%;
+  height: auto;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media screen and (min-width: 769px) {
+  .responsive-img {
+    width: 70%;
+  }
+}
+
 
 
 .teaser .hero-body {
