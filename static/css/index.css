@@ -42,9 +42,6 @@ body {
 }
 
 
-.publication-title {
-}
-
 .publication-banner {
   max-height: parent;
 
@@ -59,10 +56,6 @@ body {
 }
 
 .publication-header .hero-body {
-}
-
-.publication-title {
-    font-family: 'Google Sans', sans-serif;
 }
 
 .publication-authors {
@@ -188,13 +181,44 @@ body {
 }
 
 .logo-img {
-    width: auto;        /* 横向占满容器 */
     height: auto;       /* 保持宽高比 */
-    max-height: 150px;  /* 设定图片最高显示 400px */
-    display: block;     /* 去掉下方的 inline gap */
+    max-height: 120px;  /* 调整logo高度，适配标题 */
     object-fit: contain;/* 避免裁切，必要时可用 cover */
-    justify-content: center
-  }
+    flex-shrink: 0;     /* 防止logo被压缩 */
+}
+
+/* 标题和logo同行显示的容器样式 */
+.title-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: nowrap;  /* 强制在同一行 */
+}
+
+/* 确保标题也能正确对齐 */
+.publication-title {
+    font-family: 'Google Sans', sans-serif;
+    margin: 0;
+    flex: 1;           /* 让标题占据剩余空间 */
+    text-align: left;   /* 标题左对齐 */
+}
+
+/* 移动设备上的响应式调整 */
+@media (max-width: 768px) {
+    .title-container {
+        flex-direction: column; /* 小屏幕上垂直排列 */
+        text-align: center;
+    }
+    
+    .publication-title {
+        text-align: center; /* 小屏幕上标题居中 */
+    }
+    
+    .logo-img {
+        max-height: 80px;   /* 小屏幕上缩小logo */
+    }
+}
 
 /* Custom tab styles to align tabs to the left instead of uniform distribution */
 .tabs {
