@@ -203,4 +203,5 @@ body {
     max-height: 150px;  /* 设定图片最高显示 400px */
     display: block;     /* 去掉下方的 inline gap */
     object-fit: contain;/* 避免裁切，必要时可用 cover */
+    justify-content: center
   }
