@@ -48,10 +48,9 @@
 </head>
 <body>
 <div id="lang-toggle" style="position: fixed; top: 10px; right: 10px; z-index: 1000;">
-  <button onclick="changeLang('en')" class="button is-small">EN</button>
-  <button onclick="changeLang('zh-CN')" class="button is-small">中文</button>
+  <a href="index.html" class="button is-small">EN</a>
+  <a href="index-zh.html" class="button is-small">中文</a>
 </div>
-<div id="google_translate_element" style="display:none;"></div>
   <section class="hero">
     <div class="hero-body">
       <div class="container is-max-desktop">
@@ -572,18 +571,6 @@
 <!-- You can add a tracker to track page visits by creating an account at statcounter.com -->
 
     <!-- End of Statcounter Code -->
-<script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-<script>
-function googleTranslateElementInit() {
-  new google.translate.TranslateElement({pageLanguage: "en", includedLanguages: "en,zh-CN", layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, "google_translate_element");
-}
-function changeLang(lang) {
-  var select = document.querySelector("#google_translate_element select.goog-te-combo");
-  if (!select) return;
-  select.value = lang;
-  select.dispatchEvent(new Event("change"));
-}
-</script>
   </body>
   <script type="module" async>
       import { Niivue } from "https://unpkg.com/@niivue/niivue@0.57.0/dist/index.js"
