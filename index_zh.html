@@ -250,13 +250,13 @@
       <div class="column is-full">
         <h2 class="title is-3">Overview</h2>
         <div class="content has-text-justified">
-          <p>Automated radiology report generation (RRG) is a promising application of AI that aims to assist radiologists by producing detailed textual reports from medical images like CT scans. However, this task faces two major hurdles:</p>
+          <p>自动生成放射学报告（RRG）是一项前景广阔的人工智能应用，其目标是从 CT 等医学影像生成详细的文本报告，从而辅助放射科医生。然而，这一任务面临两个主要难题：</p>
             <ol>
-            <li><strong>Complex Information Extraction</strong>: Efficiently extracting all relevant diagnostic information from large, variable-resolution imaging data is computationally intensive and prone to information loss.</li>
-            <li><strong>Subjective Evaluation</strong>: Traditional text-generation metrics often fail to capture the clinical accuracy and semantic meaning that are crucial for medical reports.</li>
+            <li><strong>复杂的信息提取</strong>：在庞大且分辨率多变的影像数据中高效提取所有相关诊断信息需要大量计算资源，且容易出现信息缺失。</li>
+            <li><strong>主观性评估</strong>：传统文本生成指标往往无法准确衡量报告的临床准确性及语义意义。</li>
             </ol>
-            <p>To address these challenges, we introduce <strong>μ²LLM</strong>, a multi-scale multimodal large language model. At its core is the novel <strong>μ² Tokenizer</strong>, an intermediate layer that intelligently fuses visual features from CT scans with textual information. The model is further refined using Direct Preference Optimization (DPO), guided by the specialized medical report evaluation metric, GREEN, to ensure the generated reports align with expert standards.</p>
-            <p>Our experimental results on four large-scale CT datasets show that μ²LLM outperforms existing methods, highlighting its potential for generating high-quality radiology reports even with limited training data.</p>
+            <p>为了解决这些问题，我们提出了 <strong>μ²LLM</strong>，一种多尺度多模态的大型语言模型。其核心为创新的 <strong>μ² Tokenizer</strong> 中间层，能够智能地将 CT 图像的视觉特征与文本信息融合。该模型在专用医学报告评估指标 GREEN 的指导下，通过直接偏好优化（DPO）进一步提升，使生成的报告符合专家标准。</p>
+            <p>在四个大规模 CT 数据集上的实验结果表明，μ²LLM 的性能优于现有方法，即使训练数据有限，也能生成高质量的放射学报告。</p>
             <img src="static/images/cover.svg" alt="Weight distance correlation" class="blend-img-background center-image responsive-img">
         </div>
       </div>
@@ -272,10 +272,10 @@
           <h2 class="title is-3">Key Contributions</h2>
           <div class="rows">
             <ol>
-            <li><strong>μ²LLM Framework</strong>: We propose a novel multi-modal large language model (MLLM) designed to efficiently preserve critical details from medical imaging by integrating guided questions.</li>
-            <li><strong>μ² Tokenizer Layer</strong>: The core of our framework is the μ² Tokenizer, an intermediate layer that uses multi-level attention and multi-scale aggregation to refine and fuse visual and text embeddings, maximizing semantic correspondence while maintaining computational efficiency.</li>
-            <li><strong>Enhanced Training with DPO</strong>: We employ Direct Preference Optimization (DPO) to align our model&#39;s outputs with expert-validated clinical accuracy. The preference data is curated using the GREEN score, a robust LLM-based metric for evaluating the clinical accuracy of radiology reports.</li>
-            <li><strong>State-of-the-Art Performance</strong>: Despite its smaller parameter size (1B), our model consistently outperforms larger baseline models (7B to 14B) across multiple datasets, demonstrating the effectiveness of our approach.</li>
+            <li><strong>μ²LLM 框架</strong>：我们提出一种新的多模态大型语言模型，通过引入提示问题，能够高效地保留医学图像中的关键细节。</li>
+            <li><strong>μ² Tokenizer 层</strong>：该框架的核心为 μ² Tokenizer，利用多层次注意力和多尺度聚合对视觉和文本特征进行精炼与融合，在保持计算效率的同时最大化语义对应。</li>
+            <li><strong>DPO 增强训练</strong>：我们采用直接偏好优化（DPO）使模型输出与专家认可的临床准确性保持一致。偏好数据由基于 LLM 的指标 GREEN 构建，能够可靠地评估放射学报告的临床准确性。</li>
+            <li><strong>先进的性能</strong>：尽管模型参数量仅为 1B，但在多个数据集上仍显著超越 7B 至 14B 的基线模型，显示了方法的有效性。</li>
             </ol>
           </div>
           <br>
@@ -294,7 +294,7 @@
       <div class="column is-full">
         <h2 class="title is-3">Model Architecture</h2>
         <div class="content has-text-justified">
-        <p>The μ²LLM framework integrates a 3D Vision Transformer (ViT3D) as the image encoder and a large language model (LLM) for report generation. The key innovation, the <strong>μ² Tokenizer</strong>, acts as a bridge between them.</p>
+        <p>μ²LLM 框架采用 3D Vision Transformer（ViT3D）作为图像编码器，并结合大型语言模型生成报告。关键创新在于 <strong>μ² Tokenizer</strong>，它充当两者之间的桥梁。</p>
         <p><strong>Overall Pipeline (μ²LLM)</strong>
         <br>
         <br>
@@ -302,17 +302,17 @@
         <br>
         <em>Fig. 1: Overview of our proposed µ²LLM model that is centered with the μ² Tokenizer layer for high quality RRG task.</em> </p>
         <ol>
-        <li><strong>Input</strong>: A 3D CT scan and a related textual question (e.g., &quot;Can you provide a diagnosis based on the findings in the abdomen?&quot;).</li>
-        <li><strong>Image Encoder (ViT3D)</strong>: The CT scan is split into multiple frames to avoid information loss from downsampling. The ViT3D processes these frames to extract a sequence of visual tokens.</li>
-        <li><strong>μ² Tokenizer</strong>: This layer takes the visual tokens from the encoder and the tokenized question. It uses multi-scale attention mechanisms to fuse the two modalities, producing a compact and information-rich set of embeddings.</li>
-        <li><strong>LLM</strong>: The final image embeddings are passed to the LLM along with the original question to generate the detailed radiology report.</li>
+        <li><strong>输入</strong>：一份 3D CT 扫描及相关文本问题（例如：“根据腹部检查结果给出诊断？”）。</li>
+        <li><strong>图像编码器 (ViT3D)</strong>：将 CT 扫描分割成多帧以避免降采样导致的信息丢失，ViT3D 对这些帧进行处理以提取视觉标记序列。</li>
+        <li><strong>μ² Tokenizer</strong>：该层接收编码器得到的视觉标记与分词后的问题，利用多尺度注意力机制融合两种模态，生成紧凑且信息丰富的嵌入表示。</li>
+        <li><strong>LLM</strong>：最终的图像嵌入与原始问题一起输入到 LLM，生成详细的放射学报告。</li>
         </ol>
         <h3 id="the-tokenizer-module">The μ² Tokenizer Module</h3>
-        <p>The μ² Tokenizer is built upon the Linear Video Tokenizer (LinVT)  and introduces three key improvements:</p>
+        <p>μ² Tokenizer 在 Linear Video Tokenizer (LinVT) 的基础上进行改进，引入了三项关键提升：</p>
         <ul>
-        <li><strong>Relative Positional Encoding (RPE)</strong>: Instead of absolute positions, we use relative positional encodings within the attention mechanism. This allows the model to better capture local relationships between different areas of the 3D scan, which is crucial for identifying anatomical patterns.</li>
-        <li><strong>Differentiable Token Selection (DTS)</strong>: Traditional &quot;hard&quot; top-k token selection can lead to information loss and slow optimization. We replace it with a fully differentiable &quot;soft&quot; selection, which computes a weighted sum of all tokens. This preserves more information and allows gradients to flow back to all visual tokens, improving training stability.</li>
-        <li><strong>Dynamic Multi-scale Pooling (DMTP)</strong>: Rather than using fixed pooling kernel sizes, our dynamic approach allows the network to learn how to weight and select the most appropriate pooling strategy based on the input, making the feature extraction process more adaptive and effective.</li>
+        <li><strong>相对位置编码 (RPE)</strong>：在注意力机制中采用相对位置编码而非绝对位置，有助于模型更好地捕捉 3D 扫描不同区域之间的局部关系，对于识别解剖结构尤为重要。</li>
+        <li><strong>可微标记选择 (DTS)</strong>：传统的“硬” top-k 选择容易造成信息损失并减慢优化速度，我们采用完全可微的“软”选择，通过对所有标记加权求和来保留更多信息，并使梯度能够回传至所有视觉标记，从而提高训练稳定性。</li>
+        <li><strong>动态多尺度池化 (DMTP)</strong>：不再使用固定的池化核大小，网络能够根据输入学习如何权衡和选择最合适的池化策略，使特征提取更加自适应和高效。</li>
         </ul>
         <hr>
         </div>
