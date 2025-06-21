@@ -584,6 +584,11 @@ function changeLang(lang) {
   select.dispatchEvent(new Event("change"));
 }
 </script>
+<script>
+document.addEventListener("DOMContentLoaded", function(){
+  changeLang("zh-CN");
+});
+</script>
   </body>
   <script type="module" async>
       import { Niivue } from "https://unpkg.com/@niivue/niivue@0.57.0/dist/index.js"
