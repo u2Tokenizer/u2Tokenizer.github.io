@@ -168,7 +168,7 @@
     <div class="columns is-centered has-text-centered">
       <div class="column is-full">
         <div class="content has-text-justified">
-            <div class="w-full h-[160px] mb-5 border-solid border-base-300 rounded-lg">
+            <div class="w-full h-[360px] border-solid border-base-300 rounded-lg">
               <canvas id="gl"></canvas>
             </div>
             <div class="relative rounded-l-none">
@@ -575,10 +575,10 @@
       ];
       var nv = new Niivue({ isResizeCanvas: true, backColor: [1, 1, 1, 1] });
       nv.setSliceType(nv.sliceTypeMultiplanar);
-      nv.setMultiplanarLayout(3);
+      nv.setMultiplanarLayout(0);
 
       // Define a custom layout
-      const customLayout = [
+      const rowLayout = [
         // Sagittal view
         { sliceType: nv.sliceTypeSagittal, position: [0, 0, 0.25, 1] },
         // Coronal view  
@@ -592,7 +592,19 @@
       await nv.attachTo("gl");
       await nv.loadVolumes(volumeList);
 
-      // Apply the custom layout
-      nv.setCustomLayout(customLayout);
+      function updateLayout() {
+        // get window width
+        const windowWidth = window.innerWidth;
+        nv.clearCustomLayout();
+        if (windowWidth < 768) {
+          nv.setMultiplanarLayout(2);
+        } else {
+          // nv.setMultiplanarLayout(3);
+          nv.setCustomLayout(rowLayout);
+        }
+      }
+
+      window.addEventListener("resize", updateLayout);
+      updateLayout();
   </script>
   </html>
