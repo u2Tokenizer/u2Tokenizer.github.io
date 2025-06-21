@@ -167,14 +167,14 @@
   <div class="container is-max-desktop">
     <div class="columns is-centered has-text-centered">
       <div class="column is-full">
-        <div class="content has-text-justified">
+        <div class="content text-left">
             <div class="w-full h-[360px] border-solid border-base-300 rounded-lg">
               <canvas id="gl"></canvas>
             </div>
             <div class="relative rounded-l-none">
               <div class="tabs tabs-lift">
                 <input type="radio" name="my_tabs_1" class="tab" aria-label="Report Generation" checked="checked" />
-                <div id="content-mrg" class="tab-content bg-base-100 border-base-300 p-6 overflow-y-auto"
+                <div id="content-mrg" class="tab-content bg-base-100 border-base-300 md:p-6 overflow-y-auto"
                   style="max-height: 600px;">
                   <div class="chat chat-end">
                     <div class="chat-bubble bg-base-200 text-black">Describe this scan's findings.</div>
@@ -194,7 +194,7 @@
                 </div>
 
                 <input type="radio" name="my_tabs_1" class="tab" aria-label="QA(English)" />
-                <div id="content-en" class="tab-content bg-base-100 border-base-300 p-6" style="max-height: 600px;">
+                <div id="content-en" class="tab-content bg-base-100 border-base-300 md:p-6 overflow-y-auto" style="max-height: 600px;">
                     <div class="chat chat-end">
                         <div class="chat-bubble bg-base-200 text-black">What does the thickened gastric mucosa (12mm) with uneven and obvious enhancement in the stomach suggest? </div>
                     </div>
@@ -202,7 +202,7 @@
                         <div class="chat-bubble bg-base-200 text-black">
                             <div tabindex="0" class="collapse">
                                 <input type="checkbox" />
-                                <div class="collapse-title font-semibold text-gray-400">Thinking</div>
+                                <div class="collapse-title font-semibold">Thinking</div>
                                 <div class="collapse-content text-sm">
                                     The gastric mucosa thickens to 12mm, exceeding normal physiological limits (typically small 5-10mm). The appearance shows uneven and obvious enhancement, suggesting an infiltrative process disrupting the gastric wall's vascular architecture. Heterogeneous enhancement is often associated with neoplastic or inflammatory conditions. Malignancy (e.g., gastric adenocarcinoma) is a key concern due to the irregular enhancement pattern, which reflects disorganized tumor vascularity and necrosis. Lymphoma or severe gastritis could also present similarly, but the lack of systemic findings (e.g., lymphadenopathy) and the focal nature favor a primary malignant process. The absence of other acute findings (e.g., ulcerations) further raises suspicion for malignancy.
                                 </div>
@@ -213,7 +213,7 @@
                 </div>
 
                 <input type="radio" name="my_tabs_1" class="tab" aria-label="QA(Chinese)" />
-                <div id="content-zh" class="tab-content bg-base-100 border-base-300 p-6 overflow-y-auto" style="max-height: 600px;">
+                <div id="content-zh" class="tab-content bg-base-100 border-base-300 md:p-6 overflow-y-auto" style="max-height: 600px;">
                     <div class="chat chat-end">
                         <div class="chat-bubble bg-base-200 text-black">肾脏有哪些异常，特别是在位置、形状和囊肿病变方面？</div>
                     </div>
