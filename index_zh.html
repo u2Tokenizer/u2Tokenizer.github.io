@@ -80,16 +80,16 @@
                 <a href="https://thisislezhang.github.io/" target="_blank">Le Zhang</a><sup>2,6</sup></span>
             </div>
             <div class="text-base text-base-content/80">
-                <p><sup>1</sup>School of Electronic Engineering and Computer Science,</p>
-                <p>Queen Mary University of London, London, UK</p>
-                <p><sup>2</sup>School of Engineering, College of Engineering and Physical Sciences,</p>
-                <p>University of Birmingham, Birmingham, UK</p>
-                <p><sup>3</sup>Guangdong University of Technology, Guangdong, China</p>
-                <p><sup>4</sup>Meta Inc. US</p>
-                <p><sup>5</sup>Nuffield Department of Clinical Neurosciences,</p>
-                <p>University of Oxford, Oxford, UK</p>
-                <p><sup>6</sup>William Harvey Research Institute, NIHR Barts Biomedical Research Centre,</p>
-                <p>Queen Mary University London, London, UK</p>
+                <p><sup>1</sup>电子工程与计算机科学学院</p>
+                <p>伦敦玛丽女王大学，英国伦敦</p>
+                <p><sup>2</sup>工程与物理科学学院工程学院</p>
+                <p>伯明翰大学，英国伯明翰</p>
+                <p><sup>3</sup>广东工业大学，中国广东</p>
+                <p><sup>4</sup>Meta 公司，美国</p>
+                <p><sup>5</sup>Nuffield 临床神经科学系</p>
+                <p>牛津大学，英国牛津</p>
+                <p><sup>6</sup>威廉·哈维研究所，NIHR 巴茨生物医学研究中心</p>
+                <p>伦敦玛丽女王大学，英国伦敦</p>
             </div>
                   <br>
                   <div class="is-size-5 publication-authors">
@@ -325,17 +325,17 @@
   <div class="container is-max-desktop">
     <div class="columns is-centered">
       <div class="column is-full">
-        <h2 class="title is-3">Results</h2>
+        <h2 class="title is-3">结果</h2>
         <div class="content">
-          <p>Our model was evaluated on several benchmark datasets against various high-performing LLMs. We used both traditional metrics (ROUGE, METEOR, BERTScore) and the advanced LLM-based <strong>GREEN</strong> score, which measures clinical accuracy.</p>
-        <h3 id="performance-comparison">Performance Comparison</h3>
-        <p>μ²LLM achieves state-of-the-art results across all datasets, significantly outperforming larger models like LaMed-Llama-2-7B and RadFM-14B The use of DPO fine-tuned with GREEN scores further boosted performance, with a notable <strong>20% improvement</strong> in the GREEN score on average.</p>
-        <p><strong>Table 1: Performance Comparison Across Different Datasets</strong></p>
+          <p>我们的模型在多个基准数据集上与其他高性能的大模型进行评测，使用了传统指标（ROUGE、METEOR、BERTScore）以及衡量临床准确性的先进LLM指标<strong>GREEN</strong>。</p>
+        <h3 id="performance-comparison">性能对比</h3>
+        <p>μ²LLM 在所有数据集上都取得了最先进的结果，显著超过了像 LaMed-Llama-2-7B 和 RadFM-14B 这样的更大模型。利用基于 GREEN 分数微调的 DPO 进一步提升了性能，平均带来<strong>20% 的提升</strong>。</p>
+        <p><strong>表 1：不同数据集的性能对比</strong></p>
         <table>
         <thead>
         <tr>
-        <th style="text-align:left">Datasets</th>
-        <th style="text-align:left">Models</th>
+        <th style="text-align:left">数据集</th>
+        <th style="text-align:left">模型</th>
         <th style="text-align:center">ROUGE-1</th>
         <th style="text-align:center">GREEN</th>
         <th style="text-align:center">METEOR</th>
@@ -481,13 +481,13 @@
         </tr>
         </tbody>
         </table>
-        <h3 id="ablation-study">Ablation Study</h3>
-        <p>Ablation experiments confirmed that each component of the μ² Tokenizer contributes positively to the model&#39;s performance. Differentiable Token Selection (DTS) provided the most significant boost, improving the GREEN score by up to 0.2 points.</p>
-        <p><strong>Table 2: Ablation Study on μ² Tokenizer Components</strong></p>
+        <h3 id="ablation-study">消融实验</h3>
+        <p>消融实验表明 μ² Tokenizer 的各个组件均对模型性能有正向贡献，其中可微分的令牌选择（DTS）带来了最显著的提升，使 GREEN 分数最高提高了 0.2。</p>
+        <p><strong>表 2：μ²Tokenizer 组件的消融实验</strong></p>
         <table>
         <thead>
         <tr>
-        <th style="text-align:left">Model</th>
+        <th style="text-align:left">模型</th>
         <th style="text-align:center">BLEU</th>
         <th style="text-align:center">ROUGE-1</th>
         <th style="text-align:center">GREEN</th>
