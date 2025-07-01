@@ -337,16 +337,17 @@
       <div class="column is-full">
         <div class="content">
           <h2 class="title is-3">Prompt Engineering</h2>
-          <p>Our pipeline converts every CT radiology report into two complementary supervision signals: a set of clinically relevant visual-question-answer (VQA) pairs and a cohesive, model-generated chain-of-thought that explains the report’s findings.  A lightweight controller orchestrates five LLM-driven stages, ensuring that questions, answers and reasoning traces remain faithful to the source text while covering a broad spectrum of radiologic concerns.</p>
-          <p>First, the question-generation stage reads the full report (history, technique, findings and impression) and asks the LLM to propose a diverse collection of natural-language questions that a radiologist, trainee or downstream AI system might reasonably ask.  Prompt constraints force coverage across lesion attributes, anatomical localisation, diagnostic certainty and suggested follow-up, giving each study a rich inquiry space.</p>
-          <p>Second, each question is paired with the original report and re-submitted to the LLM under a “think-step-by-step” instruction.  The model must reason out loud, citing exact report fragments or well-established imaging priors before emitting a concise answer.  The resulting tuples—question, answer and raw reasoning—capture both knowledge and justification in a single pass.</p>
+          <br>
+          <img src="/static/images/prompt_engineering_d.svg" alt="Weight distance correlation" class="blend-img-background center-image responsive-img">
+          <br>
+          <p>In our workflow, we applied three prompt-engineering techniques—CT Report Rewriting, CT Report Reasoning Synthesis, and CT Report Translation—with particular emphasis on CT Report Reasoning Synthesis. The concrete process and involved prompts are listed in Appendix A.</p>
+          <p>Our CT Report Reasoning Synthesis pipeline converts each CT Report and its free-text radiology report into a rich supervisory package for multimodal learning by sequentially prompting a single large-language model in five roles: </p>
+          <p>First, the question-generation stage reads the full report (findings and impression) and asks the LLM to propose a diverse collection of natural-language questions that a radiologist, trainee or downstream AI system might reasonably ask. Prompt constraints force coverage across lesion attributes, anatomical localisation, diagnostic certainty, and suggested follow-up, giving each study a rich inquiry space.</p>
+          <p>Second, each question is paired with the original report and resubmitted to the LLM under a “think-step-by-step” instruction.  The model must clearly reason out, citing exact report fragments or well-established imaging priors, before providing a concise answer.  The resulting tuples—question, answer, and raw reasoning—capture both knowledge and justification in a single pass.</p>
           <p>Third, an automatic quality gate re-examines every tuple.  A second LLM pass checks factual consistency between answer and report, heuristics reject non-English or vacuous chains-of-thought, and domain-specific rules eliminate pathophysiologic contradictions (for example, claiming a pneumothorax is “improved” when it is first detected).  Only tuples that survive all three filters remain.</p>
           <p>Fourth, accepted reasoning traces are refined: the LLM compresses them into short, evidence-linked paragraphs whose citations reference specific report lines.  Redundancy is pruned, hedging language is toned down and, where appropriate, probabilistic qualifiers are inserted to reflect clinical uncertainty in a calibrated fashion.</p>
           <p>Finally, the pipeline fuses all refined traces into a single, structured “report-thinking” narrative.  The LLM merges overlapping rationale, orders arguments anatomically and separates them into Findings Rationale, Impression Rationale and Follow-up Rationale sections.  The finished datapoint therefore contains a CT volume, its VQA pairs (with answers) and a coherent explanation grounding every key statement, enabling scalable training of multimodal models that can answer questions and justify their answers with radiologic evidence.</p>
-          <br>
-            <br>
-            <img src="/static/images/prompt_engineering_d.svg" alt="Weight distance correlation" class="blend-img-background center-image responsive-img">
-            <br>
+            
         </div>
       </div>
     </div>
